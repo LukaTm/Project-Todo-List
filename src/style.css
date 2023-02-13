@@ -1,0 +1,67 @@
+body{
+    display: grid;
+    margin:0;
+    height: 100vh;
+    grid-template-columns: 1fr 4fr ;
+    grid-template-rows: 1fr 13fr;
+}
+
+h1{
+    margin: 0;
+    margin-left: 30px;
+}
+
+header{
+    display: grid;
+    height: 60px;
+    background-color: #805762;
+    font-family: monospace;
+    align-items: center;
+    color: #fff;
+    font-size: 1.2em;
+    grid-area: 1 / 1 / 1 / 3;
+}
+
+#sidebar{
+    display: flex;
+    grid-area: 2 / 1 / 3 / 2;
+    background-color: #dab785;
+}
+
+#main-list{
+    background-color: #f2f2f2;
+}
+
+/* Add TO DO Button */
+#addButton{
+    background-color: #699abb;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+:root {
+    --cell-size:30px;
+    --mark-size: calc(var(--cell-size) * .7);
+}
+
+#addButton::before,
+#addButton::after{
+    content: '';
+    position:absolute;
+    width: calc(var(--mark-size) * .12);
+    height: var(--mark-size);
+    background-color: rgb(253, 253, 253);
+}
+
+#addButton::before{
+    transform: rotate(180deg);
+}
+
+#addButton::after{
+    transform: rotate(-90deg)
+}
