@@ -1,5 +1,3 @@
-
-
 body{
     display: grid;
     margin:0;
@@ -22,12 +20,13 @@ header{
     align-items: center;
     color: #fff;
     font-size: 1.2em;
-    grid-area: 1 / 1 / 1 / 3;
+    grid-area: 1 / 1 / 2 / 3;
+    position: relative;
 }
 
 #sidebar{
-    display: flex;
-    grid-area: 2 / 1 / 3 / 2;
+    display: grid;
+    grid-area: 1 / 1 / 3 / 2;
     background-color: #dab785;
 }
 
