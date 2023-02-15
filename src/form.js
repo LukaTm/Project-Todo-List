@@ -1,6 +1,6 @@
 const buttonIds = ['low', 'medium', 'high'];
 const buttons = buttonIds.map((id) => document.querySelector(`#${id}`));
-console.log(buttons)
+
 
 export function formButtons() {
   for (let i = 0; i < buttons.length; i++) {
