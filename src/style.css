@@ -157,4 +157,18 @@ header{
     opacity: 0.1;
 }
 
+/* Form On click styles */
+#low:hover{
+    background-color: green;
+}
+
+#medium:hover{
+    background-color: rgb(212, 212, 76);
+}
+
+#high:hover{
+    background-color: red;
+}
+
+
 
