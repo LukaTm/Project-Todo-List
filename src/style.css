@@ -36,6 +36,7 @@ header{
     grid-area: 2 / 2 / 3 / 3;
     height: 600px;
     background-color: black;
+
 }
 
 #main-list p {
@@ -79,6 +80,20 @@ header{
     transform: rotate(-90deg)
 }
 
+
+/* Edit pop up */
+#edit-pop-up{
+    display: none;
+    width: 500px;
+    height: 300px;
+    background-color: rgb(154, 194, 209);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+}
+
 /* POP up Screen */
 .pop-up{
     display: none;
@@ -94,6 +109,20 @@ header{
 
 }
 
+/* Pop up Body */
+#pop-up-body{
+    padding: 20px;
+}
+
+/* Close pop up and Edit pop Up BUTTON */
+.close-btn{
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+    font-size: 2em;
+}
+
+/* Pop Up and Edit Pop up HEADER */
 .header{
     position: relative;
     display: grid;
@@ -104,17 +133,6 @@ header{
     border-radius: 5px 5px 0px 0px;
 }
 
-.close-btn{
-    cursor: pointer;
-    background-color: inherit;
-    border: none;
-    font-size: 2em;
-}
-
-/* Pop up Body */
-#pop-up-body{
-    padding: 20px;
-}
 
 /* Priority */
 .priority{
@@ -173,7 +191,6 @@ header{
 #high:hover{
     background-color: red;
 }
-
 
 
 

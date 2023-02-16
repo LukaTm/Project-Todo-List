@@ -11,10 +11,18 @@ export function addButton() {
 }
 // Close POP UP
 export function closePopUp() {
-	const closePopUp = document.querySelector('.close-btn')
-	closePopUp.addEventListener('click', () => {
-		popUp.style.display = 'none'
-	});
+	const closePopUp = document.querySelectorAll('.close-btn')
+	closePopUp.forEach(popUpScreen => {
+		popUpScreen.addEventListener('click', () => {
+			// Add Pop Up Screen
+			popUp.style.display = 'none'
+
+			// Edit Pop Up Screen
+			const EditpopUp = document.querySelector('#edit-pop-up')
+			EditpopUp.style.display = 'none'
+		});
+	})
+
 }
 
 

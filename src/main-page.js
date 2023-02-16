@@ -9,5 +9,6 @@ export function mainPage() {
     // Add Button
     const addButton = document.createElement('div')
     addButton.id = 'addButton'
+    addButton.className = 'all-pop-ups'
     mainPage.appendChild(addButton)
 }

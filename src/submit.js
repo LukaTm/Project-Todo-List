@@ -99,6 +99,19 @@ function showDataOnPage(id){
     p4.textContent = `Due Date: ${monthName} ${userSelectedDate.slice(-2)}`
     div.appendChild(p4)
 
+    
+    // Add Edit Button 
+    const editButton = document.createElement('button')
+    editButton.className = `all-pop-ups`
+    editButton.id = 'edit'
+    editButton.textContent = 'Edit'
+    div.appendChild(editButton)
+
+    // Add Edit Event Listener
+    editButton.addEventListener('click', () => {
+        const editBtnPopUp = document.querySelector('#edit-pop-up') 
+        editBtnPopUp.style.display = 'grid'
+    });
 
     // Add Delete Button 
     const deleteButton = document.createElement('button')
@@ -119,7 +132,6 @@ function showDataOnPage(id){
         });
         // Remove from page 
         div.remove() 
-
     });
 }
 
