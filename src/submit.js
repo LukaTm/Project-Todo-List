@@ -1,3 +1,4 @@
+
 const findUserPriority = () => {
     // Find user Selected Priority
     const buttonIds = ['low', 'medium', 'high'];
@@ -11,7 +12,7 @@ const findUserPriority = () => {
 
 // Submit Values stored
 const form = document.querySelector('form') 
-let userSelectedTitle, userSelectedDetails, userSelectedPriority;
+let userSelectedTitle, userSelectedDetails, userSelectedPriority, userSelectedDate;
 
 export function submitButton(){
     form.addEventListener("submit", (event) =>{
@@ -21,17 +22,19 @@ export function submitButton(){
         userSelectedTitle = document.querySelector('#title').value;
         userSelectedDetails = document.querySelector('#details').value;
         userSelectedPriority = findUserPriority();
+        userSelectedDate = document.querySelector('#date').value
 
         AddToStorage()
     });
 }
 
 // Make New User ToDo
-function UserToDoData(id,title, details, priority) {
+function UserToDoData(id,title, details, priority,dueDate) {
     this.id = id;
     this.title = title;
     this.details = details;
     this.priority = priority;
+    this.dueDate = dueDate
 }
 
 // Store User TODO In array
@@ -40,7 +43,7 @@ let toDoId = 0;
 
 const AddToStorage = () => {
     toDoId++;
-    const newToDo = new UserToDoData(toDoId,userSelectedTitle, userSelectedDetails, userSelectedPriority);
+    const newToDo = new UserToDoData(toDoId,userSelectedTitle, userSelectedDetails, userSelectedPriority,userSelectedDate);
     userToDoStorage.push(newToDo);
     console.log(userToDoStorage)
 
@@ -71,6 +74,14 @@ function showDataOnPage(id){
     const p3 = document.createElement('p')
     p3.textContent = `Priority: ${userSelectedPriority}`
     div.appendChild(p3)
+
+    // Convert date to Named Date
+    const date = new Date(userSelectedDate)
+    const monthName = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
+    // Display Date
+    const p4 = document.createElement('p')
+    p4.textContent = `Due Date: ${monthName} ${userSelectedDate.slice(-2)}`
+    div.appendChild(p4)
 
     // Add Delete Button 
     const deleteButton = document.createElement('button')
