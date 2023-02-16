@@ -34,7 +34,17 @@ header{
 #main-list{
     background-color: #f2f2f2;
     grid-area: 2 / 2 / 3 / 3;
+    height: 600px;
+    background-color: black;
 }
+
+/* User data on Page */
+
+#main-list p {
+    color: white;
+    font-size: 2em;
+}
+
 
 /* Add TO DO Button */
 #addButton{
@@ -70,9 +80,6 @@ header{
 #addButton::after{
     transform: rotate(-90deg)
 }
-
-
-
 
 /* POP up Screen */
 .pop-up{
@@ -169,6 +176,9 @@ header{
 #high:hover{
     background-color: red;
 }
+
+
+
 
 
 
