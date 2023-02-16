@@ -180,15 +180,15 @@ header{
 }
 
 /* Form On click styles */
-#low:hover{
+.low:hover{
     background-color: green;
 }
 
-#medium:hover{
+.medium:hover{
     background-color: rgb(212, 212, 76);
 }
 
-#high:hover{
+.high:hover{
     background-color: red;
 }
 

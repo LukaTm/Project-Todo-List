@@ -1,14 +1,15 @@
 import { Checker } from './form.js';
 import { editPopUp } from './editTodo.js';
 import { EditedPopUp } from './editTodo.js';
+import { formButtons } from './editTodo.js';
 
 const findUserPriority = () => {
     // Find user Selected Priority
     const buttonIds = ['low', 'medium', 'high'];
-    const buttons = buttonIds.map((id) => document.querySelector(`#${id}`));
+    const buttons = buttonIds.map((id) => document.querySelector(`.${id}`));
     for (let i = 0; i < buttons.length; i++) {
         if (buttons[i].style.backgroundColor !== 'rgb(154, 194, 209)'){
-            return buttons[i].id;
+            return buttons[i].className;
         }
     }
 }
@@ -78,7 +79,6 @@ function addEditButton(addId,div){
     editButton.textContent = 'Edit'
     div.appendChild(editButton)
 
-
     // Add Edit Event Listener | On click display POP UP
     editButton.addEventListener('click', () => {
         const editBtnPopUp = document.querySelector('#edit-pop-up') 
@@ -94,7 +94,7 @@ function addEditButton(addId,div){
             event.preventDefault()
 
             // Deconstruct from editTodo.js
-            const {title,details,date} = EditedPopUp();
+            const {title,details,date,priority} = EditedPopUp();
             // Loop and replace with EDITED stuff
             userToDoStorage.forEach(todo => { 
                 console.log(userToDoStorage)
@@ -104,6 +104,7 @@ function addEditButton(addId,div){
                     todo.title = title
                     todo.details = details
                     todo.date = date
+                    todo.priority = priority
                 }
             });
         });
