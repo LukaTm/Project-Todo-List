@@ -24,7 +24,7 @@ const ClearFormValues = () => {
 }
 
 // Submit Values stored
-const form = document.querySelector('form') 
+const form = document.querySelector('.todo-form') 
 let userSelectedTitle, userSelectedDetails, userSelectedPriority, userSelectedDate;
 
 export function submitButton(){
@@ -70,6 +70,47 @@ const AddToStorage = () => {
     showDataOnPage(toDoId)
 }
 
+function addEditButton(addId,div){
+    // Add Edit Button 
+    const editButton = document.createElement('button')
+    editButton.className = `all-pop-ups`
+    editButton.id = `edit${addId}`
+    editButton.textContent = 'Edit'
+    div.appendChild(editButton)
+
+
+    // Add Edit Event Listener | On click display POP UP
+    editButton.addEventListener('click', () => {
+        const editBtnPopUp = document.querySelector('#edit-pop-up') 
+        editBtnPopUp.style.display = 'grid'
+
+        // Call editToDo Function from editToDo.js
+        editPopUp(userSelectedTitle,userSelectedDetails,userSelectedDate)
+
+
+        // Edit POP UP Screen Submit Button
+        const editPopupScreen = document.querySelector('#submitEdit')
+        editPopupScreen.addEventListener('click', (event) => {
+            event.preventDefault()
+
+            // Deconstruct from editTodo.js
+            const {title,details,date} = EditedPopUp();
+            // Loop and replace with EDITED stuff
+            userToDoStorage.forEach(todo => { 
+                console.log(userToDoStorage)
+                let idToReplace = editButton.id.slice(4)  
+
+                if (idToReplace == todo.id){
+                    todo.title = title
+                    todo.details = details
+                    todo.date = date
+                }
+            });
+        });
+    });
+}
+
+
 // Add Data on Page Function
 function showDataOnPage(id){
     const toDoSection = document.querySelector('#main-list')
@@ -101,46 +142,9 @@ function showDataOnPage(id){
     p4.textContent = `Due Date: ${monthName} ${userSelectedDate.slice(-2)}`
     div.appendChild(p4)
 
-    function addEditButton(){
-        // Add Edit Button 
-        const editButton = document.createElement('button')
-        editButton.className = `all-pop-ups`
-        editButton.id = `edit${id}`
-        editButton.textContent = 'Edit'
-        div.appendChild(editButton)
+    // Call addEditButton
+    addEditButton(toDoId,div)
 
-        // Edit POP UP Screen Submit Button
-        const editPopupScreen = document.querySelector('#edit-pop-up')
-        editPopupScreen.addEventListener('submit', (event) => {
-            event.preventDefault()
-
-            // Deconstruct from editTodo.js
-            const {title,details,date} = EditedPopUp();
-            // Loop and replace with EDITED stuff
-            userToDoStorage.forEach(todo => { 
-                let idToReplace = div.id.slice(4)  
-
-                if (idToReplace == todo.id){
-                    todo.title = title
-                    todo.details = details
-                    todo.date = date
-                }
-                console.log(userToDoStorage)
-                console.log(div.id.slice(4))
-                
-            });
-        });
-
-        // Add Edit Event Listener | On click display POP UP
-        editButton.addEventListener('click', () => {
-            const editBtnPopUp = document.querySelector('#edit-pop-up') 
-            editBtnPopUp.style.display = 'grid'
-
-            // Call editToDo Function from editToDo.js
-            editPopUp(userSelectedTitle,userSelectedDetails,userSelectedDate)
-        });
-    }
-    addEditButton()
 
     // Add Delete Button 
     const deleteButton = document.createElement('button')

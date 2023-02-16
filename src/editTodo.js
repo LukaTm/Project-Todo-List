@@ -1,6 +1,3 @@
-
-// const popUpUserInformation = document.querySelector('.pop-up')
-
 const popUpTitle = document.querySelector('#edit-pop-up input[name="title"]');
 const popUpDetails = document.querySelector('#edit-pop-up input[name="details"]');
 const popUpDate = document.querySelector('#edit-pop-up input[name="date"]');
