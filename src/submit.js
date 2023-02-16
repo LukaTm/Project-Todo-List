@@ -1,5 +1,3 @@
-import { func } from "prop-types";
-
 const findUserPriority = () => {
     // Find user Selected Priority
     const buttonIds = ['low', 'medium', 'high'];
@@ -25,8 +23,6 @@ export function submitButton(){
         userSelectedPriority = findUserPriority();
 
         AddToStorage()
-
-
     });
 }
 
@@ -39,24 +35,17 @@ function UserToDoData(id,title, details, priority) {
 }
 
 // Store User TODO In array
-let UserToDoStorage = [];
+let userToDoStorage = [];
 let toDoId = 0;
 
 const AddToStorage = () => {
-    const newToDo = new UserToDoData(toDoId,userSelectedTitle, userSelectedDetails, userSelectedPriority);
-    UserToDoStorage.push(newToDo);
     toDoId++;
-    console.log(UserToDoStorage)
+    const newToDo = new UserToDoData(toDoId,userSelectedTitle, userSelectedDetails, userSelectedPriority);
+    userToDoStorage.push(newToDo);
+    console.log(userToDoStorage)
 
     // Call Display Data on Page
     showDataOnPage(toDoId)
-
-    // create id DeleteButton with storage Class
-    // add Class to also The Text 
-    // Add event Class.listener{ 'click'
-        //queryselector.deleteButton[Class]
-        //  
-    //}
 }
 
 
@@ -91,7 +80,20 @@ function showDataOnPage(id){
 
     // Add Delete Event Listener
     deleteButton.addEventListener('click', () => {
-        div.remove()
+
+        // Remove from Storage
+        userToDoStorage.forEach(todo => { 
+            let idToRemove = div.id.slice(4)
+            if (idToRemove == todo.id){
+                console.log('suc')
+                const newData = userToDoStorage.filter((item) => item.id != idToRemove);
+                userToDoStorage = newData
+            }
+        });
+
+        // Remove from page 
+        div.remove() 
+
     });
 }
 
