@@ -12,7 +12,7 @@ export function formButtons() {
   }
 }
 
-const Checker = () => {
+export const Checker = () => {
   for (let i = 0; i < buttons.length; i++) {
     const button = buttons[i];
     button.style.backgroundColor = 'rgb(154, 194, 209)';

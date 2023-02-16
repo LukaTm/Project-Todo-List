@@ -1,3 +1,4 @@
+import { Checker } from './form.js';
 
 const findUserPriority = () => {
     // Find user Selected Priority
@@ -8,6 +9,16 @@ const findUserPriority = () => {
             return buttons[i].id;
         }
     }
+}
+
+// Clear form values
+const ClearFormValues = () => {
+    const labels = document.querySelectorAll('.todo-form input:not(:last-child)');
+    labels.forEach(label =>{
+        label.value = ''
+    });
+    // Use Checker() from form.js to clear colors 
+    Checker()
 }
 
 // Submit Values stored
@@ -25,6 +36,13 @@ export function submitButton(){
         userSelectedDate = document.querySelector('#date').value
 
         AddToStorage()
+
+        // Close Pop UP  
+        const popUp = document.querySelector('.pop-up')
+        popUp.style.display = 'none'
+
+        // Call Clear Form Values
+        ClearFormValues()
     });
 }
 
@@ -45,12 +63,10 @@ const AddToStorage = () => {
     toDoId++;
     const newToDo = new UserToDoData(toDoId,userSelectedTitle, userSelectedDetails, userSelectedPriority,userSelectedDate);
     userToDoStorage.push(newToDo);
-    console.log(userToDoStorage)
 
     // Call Display Data on Page
     showDataOnPage(toDoId)
 }
-
 
 // Add Data on Page Function
 function showDataOnPage(id){
@@ -75,13 +91,14 @@ function showDataOnPage(id){
     p3.textContent = `Priority: ${userSelectedPriority}`
     div.appendChild(p3)
 
-    // Convert date to Named Date
+    // Convert date to Named DateDelete
     const date = new Date(userSelectedDate)
     const monthName = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
     // Display Date
     const p4 = document.createElement('p')
     p4.textContent = `Due Date: ${monthName} ${userSelectedDate.slice(-2)}`
     div.appendChild(p4)
+
 
     // Add Delete Button 
     const deleteButton = document.createElement('button')
@@ -96,12 +113,10 @@ function showDataOnPage(id){
         userToDoStorage.forEach(todo => { 
             let idToRemove = div.id.slice(4)
             if (idToRemove == todo.id){
-                console.log('suc')
                 const newData = userToDoStorage.filter((item) => item.id != idToRemove);
                 userToDoStorage = newData
             }
         });
-
         // Remove from page 
         div.remove() 
 
