@@ -1,4 +1,6 @@
 import { Checker } from './form.js';
+import { editPopUp } from './editTodo.js';
+import { EditedPopUp } from './editTodo.js';
 
 const findUserPriority = () => {
     // Find user Selected Priority
@@ -99,19 +101,46 @@ function showDataOnPage(id){
     p4.textContent = `Due Date: ${monthName} ${userSelectedDate.slice(-2)}`
     div.appendChild(p4)
 
-    
-    // Add Edit Button 
-    const editButton = document.createElement('button')
-    editButton.className = `all-pop-ups`
-    editButton.id = 'edit'
-    editButton.textContent = 'Edit'
-    div.appendChild(editButton)
+    function addEditButton(){
+        // Add Edit Button 
+        const editButton = document.createElement('button')
+        editButton.className = `all-pop-ups`
+        editButton.id = `edit${id}`
+        editButton.textContent = 'Edit'
+        div.appendChild(editButton)
 
-    // Add Edit Event Listener
-    editButton.addEventListener('click', () => {
-        const editBtnPopUp = document.querySelector('#edit-pop-up') 
-        editBtnPopUp.style.display = 'grid'
-    });
+        // Edit POP UP Screen Submit Button
+        const editPopupScreen = document.querySelector('#edit-pop-up')
+        editPopupScreen.addEventListener('submit', (event) => {
+            event.preventDefault()
+
+            // Deconstruct from editTodo.js
+            const {title,details,date} = EditedPopUp();
+            // Loop and replace with EDITED stuff
+            userToDoStorage.forEach(todo => { 
+                let idToReplace = div.id.slice(4)  
+
+                if (idToReplace == todo.id){
+                    todo.title = title
+                    todo.details = details
+                    todo.date = date
+                }
+                console.log(userToDoStorage)
+                console.log(div.id.slice(4))
+                
+            });
+        });
+
+        // Add Edit Event Listener | On click display POP UP
+        editButton.addEventListener('click', () => {
+            const editBtnPopUp = document.querySelector('#edit-pop-up') 
+            editBtnPopUp.style.display = 'grid'
+
+            // Call editToDo Function from editToDo.js
+            editPopUp(userSelectedTitle,userSelectedDetails,userSelectedDate)
+        });
+    }
+    addEditButton()
 
     // Add Delete Button 
     const deleteButton = document.createElement('button')
