@@ -62,11 +62,11 @@ const AddToStorage = () => {
 
 // Add Data on Page Function
 function showDataOnPage(id){
-    const dataContainer = document.querySelector('#main-list')
+    const toDoSection = document.querySelector('#main-list')
     const div = document.createElement('div')
-    div.id = id
+    div.id = `todo${id}`
 
-    dataContainer.appendChild(div)
+    toDoSection.appendChild(div)
 
     // Display Title
     const p1 = document.createElement('p')
@@ -83,7 +83,16 @@ function showDataOnPage(id){
     p3.textContent = `Priority: ${userSelectedPriority}`
     div.appendChild(p3)
 
+    // Add Delete Button 
+    const deleteButton = document.createElement('button')
+    deleteButton.className = `todo${id}`
+    deleteButton.textContent = 'Delete'
+    div.appendChild(deleteButton)
 
+    // Add Delete Event Listener
+    deleteButton.addEventListener('click', () => {
+        div.remove()
+    });
 }
 
 
