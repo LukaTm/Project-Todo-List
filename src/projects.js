@@ -1,6 +1,6 @@
 const projects = document.querySelectorAll('#projects li')
 
-let whichProjectToUploadToDO;
+let whichProjectToUploadToDO = 'morning'
 export const SidebarProjects = () => {
 
     projects.forEach(element => {
@@ -25,3 +25,12 @@ export const SidebarProjects = () => {
     return whichProjectToUploadToDO
 }
 
+// Show ALL ToDo's 
+// const ShowAllToDo = () =>{
+//     projects.forEach(element => {
+//         element.addEventListener('click', () => {
+//             element.style.display = 'block'
+//         })
+//     });
+// }
+// ShowAllToDo()

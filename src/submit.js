@@ -75,10 +75,11 @@ export const DefaultValues = () =>{
     userSelectedDate = '2023-12-07'
 
     AddToStorage('Wake up early','at least 7hr sleep','high','2023-12-07')
-    
-    const todo1 = document.querySelector('#todo1')
-    todo1.className = 'morning'
 
+    // const todoAll = document.querySelectorAll('[id*="todo"]')
+    // todoAll.forEach(todo => {
+    //     todo.className = 'morning'
+    // })
 }
 
 
