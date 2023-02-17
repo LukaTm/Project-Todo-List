@@ -25,11 +25,21 @@ header{
     margin: 0;
 }
 
-#sidebar{
+
+/* Sidebar */
+#sidebar {
     display: grid;
     grid-area: 2 / 1 / 3 / 2;
     background-color: #dab785;
 }
+
+#projects li,#projects p{
+    cursor: pointer;
+    font-size: 1.3em;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
 
 #main-list{
     background-color: #f2f2f2;
@@ -191,6 +201,7 @@ header{
 .high:hover{
     background-color: red;
 }
+
 
 
 

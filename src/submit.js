@@ -1,7 +1,7 @@
 import { Checker } from './form.js';
 import { editPopUp } from './editTodo.js';
 import { EditedPopUp } from './editTodo.js';
-import { formButtons } from './editTodo.js';
+import { SidebarProjects } from './projects.js';
 
 export const editPopUpUserPriority = () => {
     // Find user Selected Priority
@@ -60,90 +60,6 @@ export function submitButton(){
     });
 }
 
-// Make New User ToDo
-function UserToDoData(id,title, details, priority,dueDate) {
-    this.id = id;
-    this.title = title;
-    this.details = details;
-    this.priority = priority;
-    this.dueDate = dueDate
-}
-
-// Store User TODO In array
-let userToDoStorage = [];
-let toDoId = 0;
-
-const AddToStorage = () => {
-    toDoId++;
-    const newToDo = new UserToDoData(toDoId,userSelectedTitle, userSelectedDetails, userSelectedPriority,userSelectedDate);
-    userToDoStorage.push(newToDo);
-
-    // Call Display Data on Page
-    showDataOnPage(toDoId)
-}
-
-function addEditButton(addId,div){
-    // Add Edit Button 
-    const editButton = document.createElement('button')
-    editButton.className = `all-pop-ups`
-    editButton.id = `edit${addId}`
-    editButton.textContent = 'Edit'
-    div.appendChild(editButton)
-
-    // Add Edit Event Listener | On click display POP UP
-    editButton.addEventListener('click', () => {
-        const editBtnPopUp = document.querySelector('#edit-pop-up') 
-        editBtnPopUp.style.display = 'grid'
-
-
-        function showEditedOnPage(value,editedTitle,editedDetails,editedPriority,editedDueDate){
-            const allToDo = document.querySelectorAll('[id*="todo"]');
-            allToDo.forEach(todo => {
-                if (todo.id.slice(4) == value){
-                    const title = todo.querySelector(':first-child')
-                    const details = todo.querySelector(':nth-child(2)')
-                    const priority = todo.querySelector(':nth-child(3)')
-                    const dueDate = todo.querySelector(':nth-child(4)')
-
-                    title.textContent = `Title ${editedTitle}`
-                    details.textContent = `Details: ${editedDetails}`
-                    priority.textContent = `Priority: ${editedPriority}`
-                    dueDate.textContent = `Due Date: ${ConvertDateToWords(editedDueDate)} ${editedDueDate.slice(-2)}`
-
-                }
-            })
-        }
-
-
-        // Call editToDo Function from editToDo.js
-        editPopUp(userSelectedTitle,userSelectedDetails,userSelectedDate)
-
-
-        // Edit POP UP Screen Submit Button
-        const editPopupScreen = document.querySelector('#submitEdit')
-        editPopupScreen.addEventListener('click', (event) => {
-            event.preventDefault()
-
-            // Deconstruct from editTodo.js
-            const {title,details,date,priority} = EditedPopUp();
-            // Loop and replace with EDITED stuff
-            userToDoStorage.forEach(todo => { 
-                console.log(userToDoStorage)
-                let idToReplace = editButton.id.slice(4)  
-
-                if (idToReplace == todo.id){
-                    todo.title = title
-                    todo.details = details
-                    todo.date = date
-                    todo.priority = priority
-
-                }
-                showEditedOnPage(idToReplace,title,details,priority,date,)
-            });
-        });
-    });
-    
-}
 
 // Convert date to Named DateDelete
 const ConvertDateToWords = (userDate) => {
@@ -152,11 +68,15 @@ const ConvertDateToWords = (userDate) => {
     return monthName
 }
 
+
 // Add Data on Page Function
 function showDataOnPage(id){
     const toDoSection = document.querySelector('#main-list')
     const div = document.createElement('div')
     div.id = `todo${id}`
+    // Add class name based on which Project user selected
+    div.className = SidebarProjects()
+
 
     toDoSection.appendChild(div)
 
@@ -183,6 +103,28 @@ function showDataOnPage(id){
     // Call addEditButton
     addEditButton(toDoId,div)
 
+    // const allToDo = document.querySelectorAll('[id*="todo"]');
+
+    // if (allToDo.length > 1) {
+    //     for (let x = 0;x < allToDo.length;x++){
+    //         console.log('many')
+    //         if (allToDo[x].className != SidebarProjects()){
+    //             console.log(allToDo[x].className)
+    //             console.log(SidebarProjects())
+    //             allToDo[x].style.display = 'none'
+    //         }
+    //     }
+    // }
+    // else{
+    //     const allToDoOne = document.querySelector('[id*="todo"]');
+    //     console.log('one')
+    //     if (allToDoOne.className != SidebarProjects()){
+    //         console.log(allToDoOne.className)
+    //         console.log(SidebarProjects())
+    //         allToDoOne.style.display = 'none'
+    // }
+    // }
+
 
     // Add Delete Button 
     const deleteButton = document.createElement('button')
@@ -205,6 +147,93 @@ function showDataOnPage(id){
         div.remove() 
     });
 }
+
+
+// Make New User ToDo
+function UserToDoData(id,title, details, priority,dueDate) {
+    this.id = id;
+    this.title = title;
+    this.details = details;
+    this.priority = priority;
+    this.dueDate = dueDate
+}
+
+// Store User TODO In array
+let userToDoStorage = [];
+let toDoId = 0;
+
+const AddToStorage = () => {
+    toDoId++;
+    const newToDo = new UserToDoData(toDoId,userSelectedTitle, userSelectedDetails, userSelectedPriority,userSelectedDate);
+    userToDoStorage.push(newToDo);
+
+    // Call Display Data on Page
+    showDataOnPage(toDoId)
+}
+
+function showEditedOnPage(value,editedTitle,editedDetails,editedPriority,editedDueDate){
+    const allToDo = document.querySelectorAll('[id*="todo"]');
+    allToDo.forEach(todo => {
+        if (todo.id.slice(4) == value){
+            const title = todo.querySelector(':first-child')
+            const details = todo.querySelector(':nth-child(2)')
+            const priority = todo.querySelector(':nth-child(3)')
+            const dueDate = todo.querySelector(':nth-child(4)')
+
+            title.textContent = `Title ${editedTitle}`
+            details.textContent = `Details: ${editedDetails}`
+            priority.textContent = `Priority: ${editedPriority}`
+            dueDate.textContent = `Due Date: ${ConvertDateToWords(editedDueDate)} ${editedDueDate.slice(-2)}`
+
+        }
+    })
+}
+
+function addEditButton(addId,div){
+    // Add Edit Button 
+    const editButton = document.createElement('button')
+    editButton.className = `all-pop-ups`
+    editButton.id = `edit${addId}`
+    editButton.textContent = 'Edit'
+    div.appendChild(editButton)
+
+    // Add Edit Event Listener | On click display POP UP
+    editButton.addEventListener('click', () => {
+        const editBtnPopUp = document.querySelector('#edit-pop-up') 
+        editBtnPopUp.style.display = 'grid'
+
+        // Call editToDo Function from editToDo.js
+        editPopUp(userSelectedTitle,userSelectedDetails,userSelectedDate)
+
+
+        // Edit POP UP Screen Submit Button
+        const editPopupScreen = document.querySelector('#submitEdit')
+        editPopupScreen.addEventListener('click', (event) => {
+            event.preventDefault()
+
+            // Deconstruct from editTodo.js
+            const {title,details,date,priority} = EditedPopUp();
+            // Loop and replace with EDITED stuff
+            userToDoStorage.forEach(todo => { 
+                console.log(userToDoStorage)
+                let idToReplace = editButton.id.slice(4)  
+
+                if (idToReplace == todo.id){
+                    todo.title = title
+                    todo.details = details
+                    todo.date = date
+                    todo.priority = priority
+
+                }
+                // Call Show Edited ToDo on PAGE
+                showEditedOnPage(idToReplace,title,details,priority,date,)
+            });
+        });
+    });
+    
+}
+
+
 
 
 
