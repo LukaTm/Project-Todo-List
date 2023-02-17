@@ -35,9 +35,52 @@ const ClearFormValues = () => {
     Checker()
 }
 
+// Store User TODO In array
+let userToDoStorage = [];
+let toDoId = 0;
+
+// Make New User ToDo
+function UserToDoData(id,title, details, priority,dueDate) {
+    this.id = id;
+    this.title = title;
+    this.details = details;
+    this.priority = priority;
+    this.dueDate = dueDate
+}
+
+// Add to Storage User Data
+const AddToStorage = (userTitle,userDetails,userPriority,userDate) => {
+    toDoId++;
+    const newToDo = new UserToDoData(toDoId,userTitle,userDetails,userPriority,userDate);
+    userToDoStorage.push(newToDo);
+
+    // Call Display Data on Page
+    showDataOnPage(toDoId)
+}
+
+
 // Submit Values stored
 const form = document.querySelector('.todo-form') 
 let userSelectedTitle, userSelectedDetails, userSelectedPriority, userSelectedDate;
+
+
+// Show DEFAULT Values on screen
+export const DefaultValues = () =>{
+    const defaultProject = document.querySelector('#projects ul li')
+    defaultProject.style.backgroundColor = 'red'
+
+    userSelectedTitle = 'Wake up early';
+    userSelectedDetails = 'at least 7hr sleep';
+    userSelectedPriority = 'high';
+    userSelectedDate = '2023-12-07'
+
+    AddToStorage('Wake up early','at least 7hr sleep','high','2023-12-07')
+    
+    const todo1 = document.querySelector('#todo1')
+    todo1.className = 'morning'
+
+}
+
 
 export function submitButton(){
     form.addEventListener("submit", (event) =>{
@@ -49,7 +92,7 @@ export function submitButton(){
         userSelectedPriority = findUserPriority();
         userSelectedDate = document.querySelector('#date').value
 
-        AddToStorage()
+        AddToStorage(userSelectedTitle,userSelectedDetails,userSelectedPriority,userSelectedDate)
 
         // Close Pop UP  
         const popUp = document.querySelector('.pop-up')
@@ -97,33 +140,13 @@ function showDataOnPage(id){
 
     // Display Date
     const p4 = document.createElement('p')
+    console.log(userSelectedDate)
+
     p4.textContent = `Due Date: ${ConvertDateToWords(userSelectedDate)} ${userSelectedDate.slice(-2)}`
     div.appendChild(p4)
 
     // Call addEditButton
     addEditButton(toDoId,div)
-
-    // const allToDo = document.querySelectorAll('[id*="todo"]');
-
-    // if (allToDo.length > 1) {
-    //     for (let x = 0;x < allToDo.length;x++){
-    //         console.log('many')
-    //         if (allToDo[x].className != SidebarProjects()){
-    //             console.log(allToDo[x].className)
-    //             console.log(SidebarProjects())
-    //             allToDo[x].style.display = 'none'
-    //         }
-    //     }
-    // }
-    // else{
-    //     const allToDoOne = document.querySelector('[id*="todo"]');
-    //     console.log('one')
-    //     if (allToDoOne.className != SidebarProjects()){
-    //         console.log(allToDoOne.className)
-    //         console.log(SidebarProjects())
-    //         allToDoOne.style.display = 'none'
-    // }
-    // }
 
 
     // Add Delete Button 
@@ -148,28 +171,6 @@ function showDataOnPage(id){
     });
 }
 
-
-// Make New User ToDo
-function UserToDoData(id,title, details, priority,dueDate) {
-    this.id = id;
-    this.title = title;
-    this.details = details;
-    this.priority = priority;
-    this.dueDate = dueDate
-}
-
-// Store User TODO In array
-let userToDoStorage = [];
-let toDoId = 0;
-
-const AddToStorage = () => {
-    toDoId++;
-    const newToDo = new UserToDoData(toDoId,userSelectedTitle, userSelectedDetails, userSelectedPriority,userSelectedDate);
-    userToDoStorage.push(newToDo);
-
-    // Call Display Data on Page
-    showDataOnPage(toDoId)
-}
 
 function showEditedOnPage(value,editedTitle,editedDetails,editedPriority,editedDueDate){
     const allToDo = document.querySelectorAll('[id*="todo"]');

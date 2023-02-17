@@ -5,6 +5,7 @@ import { formButtons } from './form.js';
 import { formEditButtons } from './form.js';
 import { submitButton } from './submit.js';
 import { SidebarProjects } from './projects.js';
+import { DefaultValues } from './submit.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     formEditButtons()
@@ -14,5 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     closePopUp();
     submitButton()
     SidebarProjects()
+    DefaultValues()
 });
 
