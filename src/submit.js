@@ -3,6 +3,17 @@ import { editPopUp } from './editTodo.js';
 import { EditedPopUp } from './editTodo.js';
 import { formButtons } from './editTodo.js';
 
+export const editPopUpUserPriority = () => {
+    // Find user Selected Priority
+    const buttonIds = ['low', 'medium', 'high'];
+    const buttons = buttonIds.map((id) => document.querySelector(`#${id}`));
+    for (let i = 0; i < buttons.length; i++) {
+        if (buttons[i].style.backgroundColor !== 'rgb(154, 194, 209)'){
+            return buttons[i].id;
+        }
+    }
+}
+
 const findUserPriority = () => {
     // Find user Selected Priority
     const buttonIds = ['low', 'medium', 'high'];
@@ -84,7 +95,8 @@ function addEditButton(addId,div){
         const editBtnPopUp = document.querySelector('#edit-pop-up') 
         editBtnPopUp.style.display = 'grid'
 
-        function showEditedOnPage(value){
+
+        function showEditedOnPage(value,editedTitle,editedDetails,editedPriority,editedDueDate){
             const allToDo = document.querySelectorAll('[id*="todo"]');
             allToDo.forEach(todo => {
                 if (todo.id.slice(4) == value){
@@ -93,10 +105,10 @@ function addEditButton(addId,div){
                     const priority = todo.querySelector(':nth-child(3)')
                     const dueDate = todo.querySelector(':nth-child(4)')
 
-                    title.textContent = 'what'
-                    details.textContent = 'nanana'
-                    priority.textContent = 'HIGH ULTRA'
-                    dueDate.textContent = '2325-10'
+                    title.textContent = `Title ${editedTitle}`
+                    details.textContent = `Details: ${editedDetails}`
+                    priority.textContent = `Priority: ${editedPriority}`
+                    dueDate.textContent = `Due Date: ${ConvertDateToWords(editedDueDate)} ${editedDueDate.slice(-2)}`
 
                 }
             })
@@ -126,13 +138,19 @@ function addEditButton(addId,div){
                     todo.priority = priority
 
                 }
-                showEditedOnPage(idToReplace)
+                showEditedOnPage(idToReplace,title,details,priority,date,)
             });
         });
     });
     
 }
 
+// Convert date to Named DateDelete
+const ConvertDateToWords = (userDate) => {
+    const date = new Date(userDate)
+    const monthName = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
+    return monthName
+}
 
 // Add Data on Page Function
 function showDataOnPage(id){
@@ -157,12 +175,9 @@ function showDataOnPage(id){
     p3.textContent = `Priority: ${userSelectedPriority}`
     div.appendChild(p3)
 
-    // Convert date to Named DateDelete
-    const date = new Date(userSelectedDate)
-    const monthName = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
     // Display Date
     const p4 = document.createElement('p')
-    p4.textContent = `Due Date: ${monthName} ${userSelectedDate.slice(-2)}`
+    p4.textContent = `Due Date: ${ConvertDateToWords(userSelectedDate)} ${userSelectedDate.slice(-2)}`
     div.appendChild(p4)
 
     // Call addEditButton
