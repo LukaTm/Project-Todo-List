@@ -84,6 +84,25 @@ function addEditButton(addId,div){
         const editBtnPopUp = document.querySelector('#edit-pop-up') 
         editBtnPopUp.style.display = 'grid'
 
+        function showEditedOnPage(value){
+            const allToDo = document.querySelectorAll('[id*="todo"]');
+            allToDo.forEach(todo => {
+                if (todo.id.slice(4) == value){
+                    const title = todo.querySelector(':first-child')
+                    const details = todo.querySelector(':nth-child(2)')
+                    const priority = todo.querySelector(':nth-child(3)')
+                    const dueDate = todo.querySelector(':nth-child(4)')
+
+                    title.textContent = 'what'
+                    details.textContent = 'nanana'
+                    priority.textContent = 'HIGH ULTRA'
+                    dueDate.textContent = '2325-10'
+
+                }
+            })
+        }
+
+
         // Call editToDo Function from editToDo.js
         editPopUp(userSelectedTitle,userSelectedDetails,userSelectedDate)
 
@@ -105,10 +124,13 @@ function addEditButton(addId,div){
                     todo.details = details
                     todo.date = date
                     todo.priority = priority
+
                 }
+                showEditedOnPage(idToReplace)
             });
         });
     });
+    
 }
 
 
