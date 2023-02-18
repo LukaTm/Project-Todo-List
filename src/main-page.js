@@ -1,5 +1,3 @@
-import { elemIndex } from "prelude-ls"
-
 export function mainPage() { 
     const header = document.querySelector('header')
     const mainPage = document.querySelector('#sidebar')
@@ -36,12 +34,6 @@ export const CheckBoxListener = () => {
                     p[i].style.textDecoration = '';
                 }
             }
-
-
-
-            
-
-
         });
     });
 } 

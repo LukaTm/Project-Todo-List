@@ -1,6 +1,3 @@
-
-
-
 let whichProjectToUploadToDO = 'morning'
 export const SidebarProjects = () => {
 
@@ -13,7 +10,8 @@ export const SidebarProjects = () => {
             });
             element.style.backgroundColor = 'red'
             const allToDo = document.querySelectorAll('[id*="todo"]');
-            whichProjectToUploadToDO = element.textContent
+            whichProjectToUploadToDO = element.childNodes[0].textContent
+            
             allToDo.forEach(element => {
                 if (element.className != whichProjectToUploadToDO){
                     element.style.display = 'none'
@@ -39,5 +37,4 @@ const ShowAllToDo = () => {
         });
     })
 };
-
 
