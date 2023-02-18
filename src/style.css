@@ -55,6 +55,7 @@ header{
     background-color: black;
     grid-area: 2 / 2 / 3 / 3;
     height: 600px;
+    padding: 10px 0px 0px 15px;
 }
 
 #main-list p{
@@ -62,10 +63,14 @@ header{
     font-size: 1.2em;
 }
 
-#main-list button,p{
+
+#main-list p:not(:first-of-type),button {
     margin-left: 20px;
 }
 
+#checkTodo:active{
+    background-color: red;
+}
 
 /* Add TO DO Button */
 #addButton{

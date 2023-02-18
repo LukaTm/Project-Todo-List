@@ -6,15 +6,17 @@ import { formEditButtons } from './form.js';
 import { submitButton } from './submit.js';
 import { SidebarProjects } from './projects.js';
 import { DefaultValues } from './submit.js';
+import { CheckBoxListener } from './main-page.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	mainPage();
-    formEditButtons()
+    formEditButtons();
     formButtons();
     addButton();
     closePopUp();
-    submitButton()
-    SidebarProjects()
-    DefaultValues()
+    submitButton();
+    SidebarProjects();
+    DefaultValues();
+    CheckBoxListener();
 });
 

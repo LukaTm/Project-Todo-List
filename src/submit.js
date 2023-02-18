@@ -4,6 +4,7 @@ import { EditedPopUp } from './editTodo.js';
 import { SidebarProjects } from './projects.js';
 import { formEditButtons } from './form.js';
 import { Checker2 } from './form.js';
+import { CheckBoxListener } from './main-page.js';
 
 export const editPopUpUserPriority = () => {
     // Find user Selected Priority
@@ -98,11 +99,14 @@ export function submitButton(){
 
         // Call Clear Form Values
         ClearFormValues()
+
+        // Add Check Box Listener to New ToDo's
+        // CheckBoxListener()
     });
 }
 
 
-// Convert date to Named DateDelete
+// Convert date to Named Words - Feb 10
 const ConvertDateToWords = (userDate) => {
     const date = new Date(userDate)
     const monthName = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
@@ -118,8 +122,19 @@ function showDataOnPage(id){
     // Add class name based on which Project user selected
     div.className = SidebarProjects()
 
-
     toDoSection.appendChild(div)
+
+    // Add Check Mark for ToDo
+    const checkMark = document.createElement('input')
+    checkMark.type = 'checkbox'
+    checkMark.className = `checkTodo${id}`
+    checkMark.name = 'checkTodo'
+    const label = document.createElement('label')
+    label.setAttribute('for','checkTodo')
+    // label.for = 'checkTodo'
+
+    div.appendChild(checkMark)
+    div.appendChild(label)
 
     // Display Title
     const p1 = document.createElement('p')
@@ -145,7 +160,6 @@ function showDataOnPage(id){
 
     // Call addEditButton
     addEditButton(toDoId,div)
-
 
     // Add Delete Button 
     const deleteButton = document.createElement('button')

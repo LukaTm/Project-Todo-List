@@ -1,3 +1,5 @@
+import { elemIndex } from "prelude-ls"
+
 export function mainPage() { 
     const header = document.querySelector('header')
     const mainPage = document.querySelector('#sidebar')
@@ -16,3 +18,30 @@ export function mainPage() {
     container.appendChild(addButton)
     mainPage.appendChild(container)
 }
+
+
+export const CheckBoxListener = () => {
+    const checkBox = document.querySelectorAll('[class*="checkTodo"]')
+    checkBox.forEach(element =>{
+        element.addEventListener('click', () => {
+            const parent = element.parentElement
+            const p = parent.getElementsByTagName('p')
+            if (element.checked){
+                for (let i = 0; i < p.length; i++) {
+                    p[i].style.textDecoration = 'line-through';
+                }
+            }
+            else{
+                for (let i = 0; i < p.length; i++) {
+                    p[i].style.textDecoration = '';
+                }
+            }
+
+
+
+            
+
+
+        });
+    });
+} 
