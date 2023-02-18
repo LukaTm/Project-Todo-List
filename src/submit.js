@@ -2,6 +2,7 @@ import { Checker } from './form.js';
 import { editPopUp } from './editTodo.js';
 import { EditedPopUp } from './editTodo.js';
 import { SidebarProjects } from './projects.js';
+import { formEditButtons } from './form.js';
 
 export const editPopUpUserPriority = () => {
     // Find user Selected Priority
@@ -75,11 +76,6 @@ export const DefaultValues = () =>{
     userSelectedDate = '2023-12-07'
 
     AddToStorage('Wake up early','at least 7hr sleep','high','2023-12-07')
-
-    // const todoAll = document.querySelectorAll('[id*="todo"]')
-    // todoAll.forEach(todo => {
-    //     todo.className = 'morning'
-    // })
 }
 
 
@@ -191,6 +187,7 @@ function showEditedOnPage(value,editedTitle,editedDetails,editedPriority,editedD
     })
 }
 
+
 function addEditButton(addId,div){
     // Add Edit Button 
     const editButton = document.createElement('button')
@@ -204,13 +201,44 @@ function addEditButton(addId,div){
         const editBtnPopUp = document.querySelector('#edit-pop-up') 
         editBtnPopUp.style.display = 'grid'
 
+        // Which Edit Button got clicked Values
+        let buttonParentElement = editButton.parentElement
+        const title = buttonParentElement.querySelector(':first-child').textContent.slice(6)
+        const details = buttonParentElement.querySelector(':nth-child(2)').textContent.slice(9)
+
+        const dueDate = buttonParentElement.querySelector(':nth-child(4)').textContent.slice(14)
+        const FindDueDate = () =>{
+            userToDoStorage.forEach(element =>{
+                let date = element['dueDate'].slice(8,10)
+                if (date == dueDate){
+                    return element.dueDate;
+                }
+            });
+        }
+
+        const FindEditPriority = () => {
+            const buttonClasses = ['low', 'medium', 'high'];
+            const buttons2 = buttonClasses.map((id) => document.querySelector(`#${id}`));
+
+            for (let i = 0; i < buttons2.length; i++) {
+                const priority = buttonParentElement.querySelector(':nth-child(3)').textContent.slice(10)
+                if (priority == buttons2[i].id){
+                    const button = buttons2[i];
+                    button.style.backgroundColor = (priority == 'low') ? 'green' : (priority === 'medium') ? 'rgb(212, 212, 76)' : 'red';
+                }
+              }
+        }
+
+        FindEditPriority()
+
+
         // Call editToDo Function from editToDo.js
-        editPopUp(userSelectedTitle,userSelectedDetails,userSelectedDate)
+        editPopUp(title,details,FindDueDate())
 
 
         // Edit POP UP Screen Submit Button
         const editPopupScreen = document.querySelector('#submitEdit')
-        editPopupScreen.addEventListener('click', (event) => {
+        const editPopupScreenFunc = (event) => {
             event.preventDefault()
 
             // Deconstruct from editTodo.js
@@ -228,9 +256,12 @@ function addEditButton(addId,div){
 
                 }
                 // Call Show Edited ToDo on PAGE
-                showEditedOnPage(idToReplace,title,details,priority,date,)
+                showEditedOnPage(idToReplace,title,details,priority,date)
+                editPopupScreen.removeEventListener('click',editPopupScreenFunc)
+
             });
-        });
+        };
+        editPopupScreen.addEventListener('click',editPopupScreenFunc)
     });
     
 }
