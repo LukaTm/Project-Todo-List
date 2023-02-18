@@ -122,7 +122,7 @@ function showDataOnPage(id){
     const div = document.createElement('div')
     div.id = `todo${id}`
     // Add class name based on which Project user selected
-    div.className = SidebarProjects()
+    div.classList.add(SidebarProjects())
 
     toDoSection.appendChild(div)
 

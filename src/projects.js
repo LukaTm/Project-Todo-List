@@ -3,7 +3,7 @@ export const SidebarProjects = () => {
 
     const projects = document.querySelectorAll('#projects li')
     projects.forEach(element => {
-        
+    
         element.addEventListener('click', () => {
             projects.forEach(thing =>{
                 thing.style.backgroundColor = '#dab785'
@@ -12,7 +12,7 @@ export const SidebarProjects = () => {
             const allToDo = document.querySelectorAll('[id*="todo"]');
 
             whichProjectToUploadToDO = element.childNodes[0].textContent
-            element.className = whichProjectToUploadToDO
+            element.classList.add(whichProjectToUploadToDO)
             
             allToDo.forEach(element => {
                 if (element.className != whichProjectToUploadToDO){
