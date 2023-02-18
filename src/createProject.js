@@ -1,6 +1,7 @@
 import { SidebarProjects } from './projects.js';
 
 
+let projectId = 4
 export function createProject(){
     const createNewProjectInput = document.querySelector('#createProject')
     const allProjects = document.querySelector('#projects ul')
@@ -12,7 +13,7 @@ export function createProject(){
 
         const newProjectValue = createNewProjectInput.value
         const li = document.createElement('li')
-        
+        li.className = `project${projectId}`
 
         const textNode = document.createTextNode(newProjectValue);
         li.appendChild(textNode)
@@ -21,6 +22,8 @@ export function createProject(){
 
         SidebarProjects()
         deleteBtnProject()
+
+        projectId +=1
     })
 }
 
