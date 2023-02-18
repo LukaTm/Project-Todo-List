@@ -49,6 +49,7 @@ function UserToDoData(id,title, details, priority,dueDate) {
     this.details = details;
     this.priority = priority;
     this.dueDate = dueDate
+    
 }
 
 // Add to Storage User Data

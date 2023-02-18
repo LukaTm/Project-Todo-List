@@ -27,6 +27,10 @@ export function createProject(){
     })
 }
 
+// const DeleteProject = () => {
+
+// }
+
 export function deleteBtnProject() {
     const allProjectDeleteButtons = document.querySelectorAll('[class*="project"]') 
     let count = 0
@@ -41,9 +45,12 @@ export function deleteBtnProject() {
 
             element.appendChild(deleteButton)
 
+            // Delete Button Even Listener
             deleteButton.addEventListener('click', (event) => {
                 event.preventDefault()
                 event.stopPropagation()
+        
+                
             });
         }
         count += 1
