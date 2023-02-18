@@ -101,7 +101,7 @@ export function submitButton(){
         ClearFormValues()
 
         // Add Check Box Listener to New ToDo's
-        // CheckBoxListener()
+        CheckBoxListener()
     });
 }
 
@@ -123,18 +123,6 @@ function showDataOnPage(id){
     div.className = SidebarProjects()
 
     toDoSection.appendChild(div)
-
-    // Add Check Mark for ToDo
-    const checkMark = document.createElement('input')
-    checkMark.type = 'checkbox'
-    checkMark.className = `checkTodo${id}`
-    checkMark.name = 'checkTodo'
-    const label = document.createElement('label')
-    label.setAttribute('for','checkTodo')
-    // label.for = 'checkTodo'
-
-    div.appendChild(checkMark)
-    div.appendChild(label)
 
     // Display Title
     const p1 = document.createElement('p')
@@ -166,6 +154,20 @@ function showDataOnPage(id){
     deleteButton.className = `todo${id}`
     deleteButton.textContent = 'Delete'
     div.appendChild(deleteButton)
+
+
+    // Add Check Mark for ToDo
+    const checkMark = document.createElement('input')
+    checkMark.type = 'checkbox'
+    checkMark.className = `checkTodo${id}`
+    checkMark.name = 'checkTodo'
+    const label = document.createElement('label')
+    label.setAttribute('for','checkTodo')
+    // label.for = 'checkTodo'
+
+    div.appendChild(checkMark)
+    div.appendChild(label)
+    
 
     // Add Delete Event Listener
     deleteButton.addEventListener('click', () => {
