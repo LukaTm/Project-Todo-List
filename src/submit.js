@@ -3,6 +3,7 @@ import { editPopUp } from './editTodo.js';
 import { EditedPopUp } from './editTodo.js';
 import { SidebarProjects } from './projects.js';
 import { formEditButtons } from './form.js';
+import { Checker2 } from './form.js';
 
 export const editPopUpUserPriority = () => {
     // Find user Selected Priority
@@ -178,7 +179,7 @@ function showEditedOnPage(value,editedTitle,editedDetails,editedPriority,editedD
             const priority = todo.querySelector(':nth-child(3)')
             const dueDate = todo.querySelector(':nth-child(4)')
 
-            title.textContent = `Title ${editedTitle}`
+            title.textContent = `Title: ${editedTitle}`
             details.textContent = `Details: ${editedDetails}`
             priority.textContent = `Priority: ${editedPriority}`
             dueDate.textContent = `Due Date: ${ConvertDateToWords(editedDueDate)} ${editedDueDate.slice(-2)}`
@@ -208,12 +209,14 @@ function addEditButton(addId,div){
 
         const dueDate = buttonParentElement.querySelector(':nth-child(4)').textContent.slice(14)
         const FindDueDate = () =>{
+            let test = ''
             userToDoStorage.forEach(element =>{
                 let date = element['dueDate'].slice(8,10)
                 if (date == dueDate){
-                    return element.dueDate;
+                    test = element.dueDate;
                 }
             });
+            return test
         }
 
         const FindEditPriority = () => {
@@ -224,13 +227,14 @@ function addEditButton(addId,div){
                 const priority = buttonParentElement.querySelector(':nth-child(3)').textContent.slice(10)
                 if (priority == buttons2[i].id){
                     const button = buttons2[i];
+                    // Check and Clear any priority before selecting New One
+                    Checker2()
                     button.style.backgroundColor = (priority == 'low') ? 'green' : (priority === 'medium') ? 'rgb(212, 212, 76)' : 'red';
                 }
               }
         }
 
         FindEditPriority()
-
 
         // Call editToDo Function from editToDo.js
         editPopUp(title,details,FindDueDate())
@@ -251,7 +255,7 @@ function addEditButton(addId,div){
                 if (idToReplace == todo.id){
                     todo.title = title
                     todo.details = details
-                    todo.date = date
+                    todo.dueDate = date
                     todo.priority = priority
 
                 }
@@ -259,16 +263,13 @@ function addEditButton(addId,div){
                 showEditedOnPage(idToReplace,title,details,priority,date)
                 editPopupScreen.removeEventListener('click',editPopupScreenFunc)
 
+                // Close Pop up
+                const editPopUp = document.querySelector('#edit-pop-up')
+                editPopUp.style.display = 'none'
+
             });
         };
         editPopupScreen.addEventListener('click',editPopupScreenFunc)
     });
     
 }
-
-
-
-
-
-
-

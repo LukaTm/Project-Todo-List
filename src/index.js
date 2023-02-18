@@ -8,9 +8,9 @@ import { SidebarProjects } from './projects.js';
 import { DefaultValues } from './submit.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+	mainPage();
     formEditButtons()
     formButtons();
-	mainPage();
     addButton();
     closePopUp();
     submitButton()
