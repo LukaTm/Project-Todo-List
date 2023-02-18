@@ -1,5 +1,6 @@
 const projects = document.querySelectorAll('#projects li')
 
+
 let whichProjectToUploadToDO = 'morning'
 export const SidebarProjects = () => {
 
@@ -15,22 +16,26 @@ export const SidebarProjects = () => {
                     element.style.display = 'none'
                 }
                 else{
-                    element.style.display = 'block'
+                    element.style.display = 'flex'
                 }
             });
             whichProjectToUploadToDO = element.textContent
             
         })
     });
+    ShowAllToDo()
     return whichProjectToUploadToDO
 }
 
 // Show ALL ToDo's 
-// const ShowAllToDo = () =>{
-//     projects.forEach(element => {
-//         element.addEventListener('click', () => {
-//             element.style.display = 'block'
-//         })
-//     });
-// }
-// ShowAllToDo()
+const ShowAllToDo = () => {
+    const showAllToDos = document.querySelector('.show-all-todos')
+        showAllToDos.addEventListener('click', () => {
+            const allToDo = document.querySelectorAll('[id*="todo"]');
+            allToDo.forEach(element => {
+                element.style.display = 'flex'
+        });
+    })
+};
+
+
