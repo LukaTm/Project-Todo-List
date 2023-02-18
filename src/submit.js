@@ -42,24 +42,26 @@ const ClearFormValues = () => {
 let userToDoStorage = [];
 let toDoId = 0;
 
+
 // Make New User ToDo
-function UserToDoData(id,title, details, priority,dueDate) {
+function UserToDoData(id,title, details, priority,dueDate,project) {
     this.id = id;
     this.title = title;
     this.details = details;
     this.priority = priority;
     this.dueDate = dueDate
-    
+    this.project = project
 }
 
 // Add to Storage User Data
-const AddToStorage = (userTitle,userDetails,userPriority,userDate) => {
+const AddToStorage = (userTitle,userDetails,userPriority,userDate,projectClass) => {
     toDoId++;
-    const newToDo = new UserToDoData(toDoId,userTitle,userDetails,userPriority,userDate);
+    const newToDo = new UserToDoData(toDoId,userTitle,userDetails,userPriority,userDate,projectClass);
     userToDoStorage.push(newToDo);
 
     // Call Display Data on Page
     showDataOnPage(toDoId)
+    console.log(userToDoStorage)
 }
 
 
@@ -78,9 +80,8 @@ export const DefaultValues = () =>{
     userSelectedPriority = 'high';
     userSelectedDate = '2023-12-07'
 
-    AddToStorage('Wake up early','at least 7hr sleep','high','2023-12-07')
+    AddToStorage('Wake up early','at least 7hr sleep','high','2023-12-07','morning')
 }
-
 
 export function submitButton(){
     form.addEventListener("submit", (event) =>{
@@ -92,7 +93,7 @@ export function submitButton(){
         userSelectedPriority = findUserPriority();
         userSelectedDate = document.querySelector('#date').value
 
-        AddToStorage(userSelectedTitle,userSelectedDetails,userSelectedPriority,userSelectedDate)
+        AddToStorage(userSelectedTitle,userSelectedDetails,userSelectedPriority,userSelectedDate,SidebarProjects())
 
         // Close Pop UP  
         const popUp = document.querySelector('.pop-up')
