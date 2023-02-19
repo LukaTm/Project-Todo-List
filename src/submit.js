@@ -4,6 +4,7 @@ import { EditedPopUp } from './editTodo.js';
 import { SidebarProjects } from './projects.js';
 import { Checker2 } from './form.js';
 import { CheckBoxListener } from './main-page.js';
+import { GetUserData } from './createProject.js';
 
 
 export const editPopUpUserPriority = () => {
@@ -185,6 +186,16 @@ function showDataOnPage(id){
         // Remove from page 
         div.remove() 
     });
+}
+
+// Export User Storage to remove Selected Todo's
+export const RemoveProjectFromStorage = () =>{
+    console.log(userToDoStorage)
+    return userToDoStorage
+}
+
+export const UpdateUserData = (newStorage) =>{
+    userToDoStorage = newStorage
 }
 
 

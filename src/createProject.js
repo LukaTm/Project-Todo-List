@@ -1,4 +1,6 @@
 import { SidebarProjects } from './projects.js';
+import { RemoveProjectFromStorage } from './submit.js';
+import { UpdateUserData } from './submit.js';
 
 
 const Test = () => {
@@ -37,6 +39,11 @@ export function createProject(){
 }
 
 
+// let newArray;
+// export NewArray = () => {
+//     return newArrayy
+// }
+
 export function deleteBtnProject() {
     const allProjectDeleteButtons = document.querySelectorAll('[class*="project"]') 
     let count = 0
@@ -62,8 +69,15 @@ export function deleteBtnProject() {
                 console.log(allSelectedDeleteClasses)
                 allSelectedDeleteClasses.forEach(eachClass => {
                     eachClass.remove()
-                })
 
+                    // New Array with Removed Project and Todo's
+                    const userStorage = RemoveProjectFromStorage()
+                    const index = userStorage.findIndex(obj => obj.project == deleteButtonSecondWord);
+                    if (index !== -1){
+                        userStorage.splice(index,1)
+                    }
+                    UpdateUserData(userStorage)
+                })
             });
         }
         count += 1
