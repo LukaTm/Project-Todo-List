@@ -11,6 +11,7 @@ const Test = () => {
 };
 
 let selectedProject = null;
+let projectId = 4;
 
 const AddUnderlineForProject = () => {
     const lis = document.querySelectorAll("#projects li");
@@ -59,7 +60,6 @@ const AddUnderlineForProject = () => {
 
 AddUnderlineForProject();
 
-let projectId = 4;
 export function createProject() {
     const createNewProjectInput = document.querySelector("#createProject");
     const allProjects = document.querySelector("#projects ul");
@@ -96,8 +96,8 @@ export function deleteBtnProject() {
         document.querySelectorAll('[class*="project"]');
     let count = 0;
     allProjectDeleteButtons.forEach((element) => {
-        if (element.querySelector(".fas")) {
-            return;
+        if (element.querySelector("i")) {
+            console.log("hahah");
         } else {
             // TRASH ICON DELETE BUTTON
             const deleteButton = document.createElement("i");

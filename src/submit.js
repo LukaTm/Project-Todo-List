@@ -180,9 +180,8 @@ function showDataOnPage(id) {
     addEditButton(toDoId, div);
 
     // Add Delete Button
-    const deleteButton = document.createElement("button");
-    deleteButton.className = `todo${id}`;
-    deleteButton.textContent = "Delete";
+    const deleteButton = document.createElement("i");
+    deleteButton.className = `fas fa-trash-alt todo${id}`;
     div.appendChild(deleteButton);
 
     // Add Check Mark for ToDo
@@ -250,11 +249,15 @@ function showEditedOnPage(
 }
 
 function addEditButton(addId, div) {
+    // const deleteButton = document.createElement("i");
+    // deleteButton.className = `fas fa-trash-alt delProject${count}`;
+    // deleteButton.style.color = "white";
+    // deleteButton.style.borderColor = "#cccccc";
+
     // Add Edit Button
-    const editButton = document.createElement("button");
-    editButton.className = `all-pop-ups`;
+    const editButton = document.createElement("i");
+    editButton.className = `fas fa-edit all-pop-ups`;
     editButton.id = `edit${addId}`;
-    editButton.textContent = "Edit";
     div.appendChild(editButton);
 
     // Add Edit Event Listener | On click display POP UP
