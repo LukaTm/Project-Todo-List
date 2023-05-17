@@ -10,6 +10,55 @@ const Test = () => {
     });
 };
 
+let selectedProject = null;
+
+const AddUnderlineForProject = () => {
+    const lis = document.querySelectorAll("#projects li");
+
+    lis.forEach((li) => {
+        const text = li.innerText;
+        const span = document.createElement("span");
+        span.innerText = text;
+        li.innerHTML = "";
+        li.appendChild(span);
+
+        const underline = document.createElement("div");
+        underline.classList.add("underline");
+        li.appendChild(underline);
+
+        li.addEventListener("mouseenter", () => {
+            // SPAN WIDTH
+            if (selectedProject !== li) {
+                const spanWidth = span.offsetWidth;
+                underline.style.width = `${spanWidth}px`;
+                underline.style.opacity = 1;
+            }
+        });
+
+        li.addEventListener("click", () => {
+            if (selectedProject !== li) {
+                const spanWidth = span.offsetWidth;
+                underline.style.width = `${spanWidth}px`;
+                underline.style.opacity = 1;
+                if (selectedProject) {
+                    selectedProject.querySelector(".underline").style.width =
+                        "0";
+                }
+                selectedProject = li;
+            }
+        });
+
+        li.addEventListener("mouseleave", () => {
+            if (selectedProject !== li) {
+                underline.style.width = "0";
+                underline.style.opacity = 0;
+            }
+        });
+    });
+};
+
+AddUnderlineForProject();
+
 let projectId = 4;
 export function createProject() {
     const createNewProjectInput = document.querySelector("#createProject");
@@ -21,13 +70,14 @@ export function createProject() {
 
         const newProjectValue = createNewProjectInput.value;
         const li = document.createElement("li");
-        li.classList.add(`project${projectId}`);
+        li.classList.add(`project${projectId}`, "wrap-text");
 
         const textNode = document.createTextNode(newProjectValue);
         li.appendChild(textNode);
         allProjects.appendChild(li);
         createNewProjectInput.value = "";
 
+        AddUnderlineForProject();
         deleteBtnProject();
         SidebarProjects();
         Test();
@@ -46,8 +96,8 @@ export function deleteBtnProject() {
         document.querySelectorAll('[class*="project"]');
     let count = 0;
     allProjectDeleteButtons.forEach((element) => {
-        if (element.querySelector("button")) {
-            console.log("1");
+        if (element.querySelector(".fas")) {
+            return;
         } else {
             // TRASH ICON DELETE BUTTON
             const deleteButton = document.createElement("i");

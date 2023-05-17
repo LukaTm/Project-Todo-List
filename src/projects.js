@@ -6,7 +6,8 @@ export const SidebarProjects = () => {
             projects.forEach((thing) => {
                 thing.style.backgroundColor = "#dab785";
             });
-            element.style.backgroundColor = "red";
+            // element.style.backgroundColor = "red";
+
             const allToDo = document.querySelectorAll('[id*="todo"]');
 
             whichProjectToUploadToDO = element.childNodes[0].textContent;

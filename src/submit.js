@@ -88,7 +88,6 @@ let userSelectedTitle,
 // Show DEFAULT Values on screen
 export const DefaultValues = () => {
     const defaultProject = document.querySelector("#projects ul li");
-    defaultProject.style.backgroundColor = "red";
 
     userSelectedTitle = "Wake up early";
     userSelectedDetails = "at least 7hr sleep";
