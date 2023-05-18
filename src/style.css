@@ -101,12 +101,10 @@ div[id^="todo"] p:nth-of-type(2) {
     word-break: break-all;
 }
 
-/* Hide the default checkbox */
 input[type="checkbox"] {
     display: none;
 }
 
-/* Style the custom checkmark */
 input[type="checkbox"] + label::before {
     content: "";
     display: inline-block;
@@ -118,13 +116,11 @@ input[type="checkbox"] + label::before {
     left: 10px;
 }
 
-/* Style the custom checkmark when checked */
 input[type="checkbox"]:checked + label::before {
     background-color: #007bff;
     border-color: #007bff;
 }
 
-/* Optional: Add a tick symbol inside the checkmark */
 input[type="checkbox"]:checked + label::before {
     content: "✓";
     color: #fff;

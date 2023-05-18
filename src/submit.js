@@ -187,11 +187,11 @@ function showDataOnPage(id) {
     // Add Check Mark for ToDo
     const checkMark = document.createElement("input");
     checkMark.type = "checkbox";
-    checkMark.id = "checkTodo";
+    checkMark.id = `checkTodo${id}`;
     checkMark.className = `checkTodo${id}`;
     checkMark.name = "checkTodo";
     const label = document.createElement("label");
-    label.setAttribute("for", "checkTodo");
+    label.setAttribute("for", `checkTodo${id}`);
     // label.for = 'checkTodo'
 
     div.appendChild(checkMark);
