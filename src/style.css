@@ -114,6 +114,7 @@ input[type="checkbox"] + label::before {
     border-radius: 3px;
     position: absolute;
     left: 10px;
+    cursor: pointer;
 }
 
 input[type="checkbox"]:checked + label::before {
@@ -155,14 +156,23 @@ input[type="checkbox"]:checked + label::before {
     padding-left: 25px;
 }
 
-ul > li {
+ul {
+    position: relative;
+}
+
+ul > div {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+}
+ul > div > i {
+    margin-left: 10px;
+    margin-right: 5px;
 }
 
 .fa-trash-alt {
     cursor: pointer;
-    padding: 3px 10px 3px 10px;
+    padding: 3px 3px 3px 3px;
+    font-size: 1.3em;
 }
 
 #checkTodo:active {
@@ -328,11 +338,11 @@ ul > li {
 
 .underline {
     position: absolute;
-    bottom: -2px;
+    bottom: -3px;
     left: 0;
     width: 0;
     height: 3px;
-    background-color: #000;
+    background-color: #ffffff;
     border-radius: 10px;
     opacity: 0;
     transition: width 0.3s ease, opacity 0.3s ease;

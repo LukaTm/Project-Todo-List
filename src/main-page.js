@@ -10,11 +10,18 @@ export function mainPage() {
     const addButton = document.createElement("div");
     addButton.id = "addButton";
     addButton.className = "all-pop-ups";
-    // mainPage.appendChild(addButton)
+
     const container = document.createElement("div");
     container.className = "container";
     container.appendChild(addButton);
     mainPage.appendChild(container);
+
+    // DEFAULT PROJECT
+    const defaultMorning = document.querySelector(".project1.morning div");
+    const span = document.querySelector(".project1 span");
+    const spanWidth = span.offsetWidth;
+    defaultMorning.style.width = `${spanWidth ? spanWidth : "60"}px`;
+    defaultMorning.style.opacity = "1";
 }
 
 export const CheckBoxListener = () => {

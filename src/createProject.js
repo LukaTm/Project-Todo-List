@@ -70,11 +70,16 @@ export function createProject() {
 
         const newProjectValue = createNewProjectInput.value;
         const li = document.createElement("li");
+        const div = document.createElement("div");
         li.classList.add(`project${projectId}`, "wrap-text");
 
         const textNode = document.createTextNode(newProjectValue);
+
         li.appendChild(textNode);
-        allProjects.appendChild(li);
+
+        div.appendChild(li);
+        div.className = `prox${projectId}`;
+        allProjects.appendChild(div);
         createNewProjectInput.value = "";
 
         AddUnderlineForProject();
@@ -93,7 +98,7 @@ export function createProject() {
 
 export function deleteBtnProject() {
     const allProjectDeleteButtons =
-        document.querySelectorAll('[class*="project"]');
+        document.querySelectorAll('[class*="prox"]');
     let count = 0;
     allProjectDeleteButtons.forEach((element) => {
         if (element.querySelector("i")) {
