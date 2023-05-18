@@ -48,7 +48,6 @@ const AddUnderlineForProject = () => {
                         "0";
                 }
                 selectedProject = li;
-                console.log(selectedProject);
             }
         });
 
@@ -105,7 +104,7 @@ export function deleteBtnProject() {
     let count = 0;
     allProjectDeleteButtons.forEach((element) => {
         if (element.querySelector("i")) {
-            console.log("hahah");
+            return;
         } else {
             // TRASH ICON DELETE BUTTON
             const deleteButton = document.createElement("i");
@@ -120,14 +119,11 @@ export function deleteBtnProject() {
                 event.preventDefault();
                 event.stopPropagation();
 
-                const delParentClass =
-                    deleteButton.parentElement.className.split(" ");
-                const deleteButtonSecondWord = delParentClass.slice(1, 2)[0];
-                console.log(deleteButtonSecondWord);
+                const deleteButtonSecondWord =
+                    deleteButton.parentElement.className;
                 const allSelectedDeleteClasses = document.querySelectorAll(
                     `.${deleteButtonSecondWord.toString()}`
                 );
-                console.log(allSelectedDeleteClasses);
                 allSelectedDeleteClasses.forEach((eachClass) => {
                     eachClass.remove();
 

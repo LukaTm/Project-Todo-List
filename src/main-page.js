@@ -20,27 +20,47 @@ export function mainPage() {
 
     const defaultMorning = document.querySelector(".project1.morning div");
     const screenWidth = window.innerWidth;
-    const span = document.querySelector(".project1 span");
-    const spanWidth = span.offsetWidth;
-    if (screenWidth > 669) {
-        defaultMorning.style.width = `${spanWidth ? spanWidth : "60"}px`;
-        defaultMorning.style.opacity = "1";
-    } else {
-        defaultMorning.style.width = "60px";
-        defaultMorning.style.opacity = "1";
-    }
-    window.addEventListener("resize", () => {
-        const screenWidth = window.innerWidth;
-        const span = document.querySelector(".project1 span");
-        const spanWidth = span.offsetWidth;
-        if (screenWidth > 669) {
+    // const span = document.querySelector(".project1 span");
+    // const spanWidth = span.offsetWidth;
+    // if (screenWidth > 669) {
+    //     defaultMorning.style.width = `${spanWidth ? spanWidth : "60"}px`;
+    //     defaultMorning.style.opacity = "1";
+    // } else {
+    //     defaultMorning.style.width = "60px";
+    //     defaultMorning.style.opacity = "1";
+    // }
+
+    const isActive = document.querySelector(".drawer");
+    isActive.addEventListener("click", () => {
+        setTimeout(() => {
+            const defaultMorning = document.querySelector(
+                ".project1.morning div"
+            );
+            const span = document.querySelector(".project1 span");
+            const spanWidth = span.offsetWidth;
             defaultMorning.style.width = `${spanWidth}px`;
             defaultMorning.style.opacity = "1";
-        } else {
-            defaultMorning.style.width = "60px";
-            defaultMorning.style.opacity = "1";
-        }
+        }, 100);
     });
+    // window.addEventListener("resize", () => {
+    //     const screenWidth = window.innerWidth;
+    //     const span = document.querySelector(".project1 span");
+    //     const spanWidth = span.offsetWidth;
+    //     const isActive = document.querySelector(".drawer.active");
+    //     if (screenWidth > 669) {
+    //         defaultMorning.style.width = `${spanWidth}px`;
+    //         defaultMorning.style.opacity = "1";
+    //     } else if (isActive) {
+    //         const defaultMorning = document.querySelector(
+    //             ".project1.morning div"
+    //         );
+    //         defaultMorning.style.width = `${spanWidth}px`;
+    //         defaultMorning.style.opacity = "1";
+    //     } else {
+    //         defaultMorning.style.width = "60px";
+    //         defaultMorning.style.opacity = "1";
+    //     }
+    // });
 }
 
 export const CheckBoxListener = () => {

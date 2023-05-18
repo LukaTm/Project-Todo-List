@@ -75,7 +75,6 @@ const AddToStorage = (
 
     // Call Display Data on Page
     showDataOnPage(toDoId);
-    console.log(userToDoStorage);
 };
 
 // Submit Values stored
@@ -169,7 +168,6 @@ function showDataOnPage(id) {
 
     // Display Date
     const p4 = document.createElement("p");
-    console.log(userSelectedDate);
 
     p4.textContent = `Due Date: ${ConvertDateToWords(
         userSelectedDate
@@ -216,7 +214,6 @@ function showDataOnPage(id) {
 
 // Export User Storage to remove Selected Todo's
 export const RemoveProjectFromStorage = () => {
-    console.log(userToDoStorage);
     return userToDoStorage;
 };
 
@@ -327,7 +324,6 @@ function addEditButton(addId, div) {
             const { title, details, date, priority } = EditedPopUp();
             // Loop and replace with EDITED stuff
             userToDoStorage.forEach((todo) => {
-                console.log(userToDoStorage);
                 let idToReplace = editButton.id.slice(4);
 
                 if (idToReplace == todo.id) {
