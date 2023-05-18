@@ -10,7 +10,9 @@ const Test = () => {
     });
 };
 
-let selectedProject = null;
+const default_li = document.querySelector("#projects li");
+
+let selectedProject = default_li;
 let projectId = 4;
 
 const AddUnderlineForProject = () => {
@@ -46,6 +48,7 @@ const AddUnderlineForProject = () => {
                         "0";
                 }
                 selectedProject = li;
+                console.log(selectedProject);
             }
         });
 
