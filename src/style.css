@@ -59,6 +59,7 @@ header {
 #sidebar > * {
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
+    font-size: 0.8em;
 }
 
 #createNewProject {
@@ -122,8 +123,8 @@ header {
     font-size: 1.3em;
     margin-left: 20px;
     margin-bottom: 10px;
-    min-width: 230px;
-    max-width: 230px;
+    min-width: 200px;
+    max-width: 200px;
 }
 
 [id^="todo"] {
@@ -133,7 +134,6 @@ header {
     align-items: center;
 }
 div[id^="todo"] p:nth-of-type(2) {
-    margin-top: 35px;
     max-width: 300px;
     min-width: 60px;
     word-break: break-all;
@@ -188,7 +188,7 @@ input[type="checkbox"]:checked + label::before {
 
 #main-list p {
     color: white;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 #main-list p:not(:first-child) {
     padding-left: 25px;
@@ -471,7 +471,7 @@ ul > div > i {
         width: 85vw;
     }
     #sidebar {
-        max-width: calc(100vw - 25s0px);
+        max-width: calc(100vw - 250px);
     }
 }
 
