@@ -84,22 +84,53 @@ header {
     font-size: 1.3em;
     margin-left: 20px;
     margin-bottom: 10px;
-    min-width: 140px;
-    max-width: 200px;
+    min-width: 230px;
+    max-width: 230px;
 }
 
 [id^="todo"] {
     display: flex;
     align-items: baseline;
-    margin-left: 10px;
+    margin-left: 30px;
+    align-items: center;
+}
+div[id^="todo"] p:nth-of-type(2) {
+    margin-top: 35px;
+    max-width: 300px;
+    min-width: 60px;
+    word-break: break-all;
 }
 
-[type="checkbox"] {
+/* Hide the default checkbox */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Style the custom checkmark */
+input[type="checkbox"] + label::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
     position: absolute;
-    display: flex;
-    justify-content: start;
-    align-self: center;
-    margin-top: 11px;
+    left: 10px;
+}
+
+/* Style the custom checkmark when checked */
+input[type="checkbox"]:checked + label::before {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Optional: Add a tick symbol inside the checkmark */
+input[type="checkbox"]:checked + label::before {
+    content: "✓";
+    color: #fff;
+    text-align: center;
+    line-height: 14px;
+    font-size: 12px;
 }
 
 #del-project {
@@ -114,14 +145,17 @@ header {
     display: flex;
     flex-direction: column;
     background-color: #f2f2f2;
-    background-color: rgb(68, 23, 23);
-    padding: 10px 0px 0px 15px;
+    background-color: #522f2f;
+    padding: 15px 0px 0px 15px;
     grid-area: 2 / 2 /2 /3;
+    position: relative;
 }
 
 #main-list p {
     color: white;
     font-size: 1.2em;
+}
+#main-list p:not(:first-child) {
     padding-left: 25px;
 }
 
@@ -332,7 +366,22 @@ ul > li {
     display: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
+    #projects li,
+    #projects p {
+        min-width: 200px;
+        max-width: 200px;
+    }
+}
+@media (max-width: 800px) {
+    #projects li,
+    #projects p {
+        min-width: 160px;
+        max-width: 1600px;
+    }
+}
+
+@media (max-width: 716px) {
     #sidebar > * {
         font-size: 2vw;
     }
@@ -364,18 +413,66 @@ ul > li {
     }
 
     [id^="todo"] {
-        width: 93vw;
+        width: 90vw;
+    }
+    [id^="todo"] > p {
+        font-size: 2.5vw !important;
     }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 540px) {
     [id^="todo"] > p {
-        font-size: 4vw !important;
+        font-size: 0.9em !important;
+    }
+}
+
+@media (max-width: 450px) {
+    [id^="todo"] {
+        width: 85vw;
+    }
+}
+
+@media (max-width: 440px) {
+    [id^="todo"] {
+        width: 85vw;
+    }
+
+    #main-list {
+        width: calc(100vw + 100px);
     }
 }
 
 @media (max-width: 383px) {
     [id^="todo"] > p {
-        font-size: 3.5vw !important;
+        font-size: 0.8em !important;
+    }
+}
+
+@media (max-width: 309px) {
+    #main-list {
+        width: calc(100vw + 150px);
+    }
+}
+
+@media (max-width: 260px) {
+    #main-list {
+        width: calc(100vw + 200px);
+    }
+}
+
+@media (max-width: 209px) {
+    #main-list {
+        width: calc(100vw + 265px);
+    }
+}
+
+@media (max-width: 85px) {
+    #main-list {
+        width: calc(100vw + 350px);
+    }
+}
+@media (max-width: 55px) {
+    #main-list {
+        width: calc(100vw + 450px);
     }
 }
