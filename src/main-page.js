@@ -17,11 +17,30 @@ export function mainPage() {
     mainPage.appendChild(container);
 
     // DEFAULT PROJECT
+
     const defaultMorning = document.querySelector(".project1.morning div");
+    const screenWidth = window.innerWidth;
     const span = document.querySelector(".project1 span");
     const spanWidth = span.offsetWidth;
-    defaultMorning.style.width = `${spanWidth ? spanWidth : "60"}px`;
-    defaultMorning.style.opacity = "1";
+    if (screenWidth > 669) {
+        defaultMorning.style.width = `${spanWidth ? spanWidth : "60"}px`;
+        defaultMorning.style.opacity = "1";
+    } else {
+        defaultMorning.style.width = "60px";
+        defaultMorning.style.opacity = "1";
+    }
+    window.addEventListener("resize", () => {
+        const screenWidth = window.innerWidth;
+        const span = document.querySelector(".project1 span");
+        const spanWidth = span.offsetWidth;
+        if (screenWidth > 669) {
+            defaultMorning.style.width = `${spanWidth}px`;
+            defaultMorning.style.opacity = "1";
+        } else {
+            defaultMorning.style.width = "60px";
+            defaultMorning.style.opacity = "1";
+        }
+    });
 }
 
 export const CheckBoxListener = () => {
@@ -59,11 +78,11 @@ export const Drawer = () => {
     });
     window.addEventListener("resize", () => {
         const screenWidth = window.innerWidth;
-        if (screenWidth > 669) {
+        if (screenWidth >= 670) {
             sidebar.style.display = "grid";
             drawer.className = drawer.className.replace("active", "").trim();
         }
-        if (screenWidth < 670 && !drawer.classList.contains("active")) {
+        if (screenWidth <= 670 && !drawer.classList.contains("active")) {
             sidebar.style.display = "none";
         }
     });
