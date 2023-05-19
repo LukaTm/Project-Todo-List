@@ -2,6 +2,12 @@ export function mainPage() {
     // const header = document.querySelector("header");
     const mainPage = document.querySelector("#sidebar");
 
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 670) {
+        mainPage.style.display = "flex";
+        mainPage.style.opacity = "0";
+    }
+
     // const h1 = document.createElement("h1");
     // h1.textContent = "TO-DO";
     // header.appendChild(h1);
@@ -16,38 +22,45 @@ export function mainPage() {
     container.appendChild(addButton);
     mainPage.appendChild(container);
 
-    // DEFAULT PROJECT
+    // Select Latest Project after CREATING IT
     let firstRun = true;
+    const createProjectSubmit = document.querySelector("#submitNewProject");
+    createProjectSubmit.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        setTimeout(() => {
+            const lastLi = document.querySelector(
+                "#projects ul:last-child div:last-child li"
+            );
+            lastLi.click();
+        }, 100);
+        firstRun = false;
+    });
+
+    let runOnce = true;
+    // DEFAULT PROJECT
     const defaultClick = document.querySelector(".project1.morning");
-    if (defaultClick) {
+    if (defaultClick && runOnce) {
         defaultClick.click();
+        runOnce = false;
     } else {
         firstRun = false;
+        runOnce = false;
     }
 
-    // const screenWidth = window.innerWidth;
-    // const span = document.querySelector(".project1 span");
-    // const spanWidth = span.offsetWidth;
-    // if (screenWidth >= 670) {
-    //     defaultMorning.style.width = `${spanWidth ? spanWidth : "60"}px`;
-    //     defaultMorning.style.opacity = "1";
-    // }
-
-    const isActive = document.querySelector(".drawer");
-    isActive.addEventListener("click", () => {
-        if (firstRun) {
-            setTimeout(() => {
-                const defaultMorning = document.querySelector(
-                    ".project1.morning div"
-                );
-                const span = document.querySelector(".project1 span");
-                const spanWidth = span.offsetWidth;
-                defaultMorning.style.width = `${spanWidth}px`;
-                defaultMorning.style.opacity = "1";
-            }, 100);
-            firstRun = false;
-        }
+    window.addEventListener("resize", () => {
+        const allSpanProject = document.querySelectorAll("li span");
+        allSpanProject.forEach((element) => {
+            const spanWidth = element.offsetWidth;
+            const underline = document.querySelector(".underline");
+            underline.style.width = `${spanWidth}px`;
+        });
     });
+
+    if (screenWidth <= 670) {
+        mainPage.style.display = "none";
+        mainPage.style.opacity = "1";
+    }
 }
 
 export const CheckBoxListener = () => {
@@ -94,3 +107,40 @@ export const Drawer = () => {
         }
     });
 };
+
+window.addEventListener("resize", () => {
+    const allSpanProject = document.querySelectorAll("li span");
+    allSpanProject.forEach((element) => {
+        const parentDiv = element.parentElement;
+        const childDiv = parentDiv.querySelector(
+            "div.underline[style*='width']"
+        );
+        const parentWidth = getComputedStyle(parentDiv).width;
+        const childWidth = getComputedStyle(childDiv).width;
+
+        if (parseInt(parentWidth) > 0 && parseInt(childWidth) > 0) {
+            const spanWidth = element.offsetWidth;
+            childDiv.style.width = `${spanWidth}px`;
+        }
+    });
+});
+
+window.addEventListener("resize", () => {
+    const allSpanProject = document.querySelectorAll("li span");
+    allSpanProject.forEach((element) => {
+        const parentDiv = element.parentElement;
+        const childDiv = parentDiv.querySelector(
+            "div.underline[style*='width']"
+        );
+
+        if (parentDiv && childDiv) {
+            const parentWidth = getComputedStyle(parentDiv).width;
+            const childWidth = getComputedStyle(childDiv).width;
+
+            if (parseInt(parentWidth) > 0 && parseInt(childWidth) > 0) {
+                const spanWidth = element.offsetWidth;
+                childDiv.style.width = `${spanWidth}px`;
+            }
+        }
+    });
+});

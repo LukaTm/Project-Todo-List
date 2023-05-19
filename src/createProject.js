@@ -44,6 +44,7 @@ const AddUnderlineForProject = () => {
                 if (selectedProject) {
                     selectedProject.querySelector(".underline").style.width =
                         "0";
+                    selectedProject.querySelector("div").style.opacity = "0";
                 }
                 selectedProject = li;
             }
@@ -54,6 +55,14 @@ const AddUnderlineForProject = () => {
                 underline.style.width = "0";
                 underline.style.opacity = 0;
             }
+        });
+        window.addEventListener("resize", () => {
+            const allSpanProject = document.querySelectorAll("li span");
+            allSpanProject.forEach((element) => {
+                const spanWidth = element.offsetWidth;
+                const underline = document.querySelector(".underline");
+                underline.style.width = `${spanWidth}px`;
+            });
         });
     });
 };
@@ -82,19 +91,15 @@ export function createProject() {
         allProjects.appendChild(div);
         createNewProjectInput.value = "";
 
-        AddUnderlineForProject();
         deleteBtnProject();
         SidebarProjects();
         Test();
 
+        AddUnderlineForProject();
+
         projectId += 1;
     });
 }
-
-// let newArray;
-// export NewArray = () => {
-//     return newArrayy
-// }
 
 export function deleteBtnProject() {
     const allProjectDeleteButtons =
