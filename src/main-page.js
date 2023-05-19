@@ -30,37 +30,22 @@ export function mainPage() {
     //     defaultMorning.style.opacity = "1";
     // }
 
+    let firstRun = true;
     const isActive = document.querySelector(".drawer");
     isActive.addEventListener("click", () => {
-        setTimeout(() => {
-            const defaultMorning = document.querySelector(
-                ".project1.morning div"
-            );
-            const span = document.querySelector(".project1 span");
-            const spanWidth = span.offsetWidth;
-            defaultMorning.style.width = `${spanWidth}px`;
-            defaultMorning.style.opacity = "1";
-        }, 100);
+        if (firstRun) {
+            setTimeout(() => {
+                const defaultMorning = document.querySelector(
+                    ".project1.morning div"
+                );
+                const span = document.querySelector(".project1 span");
+                const spanWidth = span.offsetWidth;
+                defaultMorning.style.width = `${spanWidth}px`;
+                defaultMorning.style.opacity = "1";
+            }, 100);
+            firstRun = false;
+        }
     });
-    // window.addEventListener("resize", () => {
-    //     const screenWidth = window.innerWidth;
-    //     const span = document.querySelector(".project1 span");
-    //     const spanWidth = span.offsetWidth;
-    //     const isActive = document.querySelector(".drawer.active");
-    //     if (screenWidth > 669) {
-    //         defaultMorning.style.width = `${spanWidth}px`;
-    //         defaultMorning.style.opacity = "1";
-    //     } else if (isActive) {
-    //         const defaultMorning = document.querySelector(
-    //             ".project1.morning div"
-    //         );
-    //         defaultMorning.style.width = `${spanWidth}px`;
-    //         defaultMorning.style.opacity = "1";
-    //     } else {
-    //         defaultMorning.style.width = "60px";
-    //         defaultMorning.style.opacity = "1";
-    //     }
-    // });
 }
 
 export const CheckBoxListener = () => {
@@ -92,14 +77,14 @@ export const Drawer = () => {
             sidebar.style.display = "none";
             drawer.className = drawer.className.replace("active", "").trim();
         } else {
-            sidebar.style.display = "grid";
+            sidebar.style.display = "flex";
             drawer.classList.add("active");
         }
     });
     window.addEventListener("resize", () => {
         const screenWidth = window.innerWidth;
         if (screenWidth >= 670) {
-            sidebar.style.display = "grid";
+            sidebar.style.display = "flex";
             drawer.className = drawer.className.replace("active", "").trim();
         }
         if (screenWidth <= 670 && !drawer.classList.contains("active")) {
