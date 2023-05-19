@@ -17,20 +17,22 @@ export function mainPage() {
     mainPage.appendChild(container);
 
     // DEFAULT PROJECT
+    let firstRun = true;
+    const defaultClick = document.querySelector(".project1.morning");
+    if (defaultClick) {
+        defaultClick.click();
+    } else {
+        firstRun = false;
+    }
 
-    const defaultMorning = document.querySelector(".project1.morning div");
-    const screenWidth = window.innerWidth;
+    // const screenWidth = window.innerWidth;
     // const span = document.querySelector(".project1 span");
     // const spanWidth = span.offsetWidth;
-    // if (screenWidth > 669) {
+    // if (screenWidth >= 670) {
     //     defaultMorning.style.width = `${spanWidth ? spanWidth : "60"}px`;
-    //     defaultMorning.style.opacity = "1";
-    // } else {
-    //     defaultMorning.style.width = "60px";
     //     defaultMorning.style.opacity = "1";
     // }
 
-    let firstRun = true;
     const isActive = document.querySelector(".drawer");
     isActive.addEventListener("click", () => {
         if (firstRun) {

@@ -437,7 +437,7 @@ ul > div > i {
 
 @media (max-width: 716px) {
     #sidebar > * {
-        font-size: 2vw;
+        font-size: 1.8vw;
     }
     #projects li,
     #projects p {
