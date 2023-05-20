@@ -29,7 +29,7 @@ const findUserPriority = () => {
 };
 
 // Clear form values
-const ClearFormValues = () => {
+export const ClearFormValues = () => {
     const labels = document.querySelectorAll(
         ".todo-form input:not(:last-child)"
     );
