@@ -296,9 +296,38 @@ ul > div > i {
     border-radius: 5px;
 }
 
+.empty-project-popup {
+    width: calc(100vw - 20vw);
+    height: calc(100vh - 60vh);
+}
+
 /* Pop up Body */
 #pop-up-body {
     padding: 20px;
+}
+
+#pop-up-body #priority {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 0.9em;
+    margin-bottom: 2px;
+}
+
+#pop-up-body label {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 0.9em;
+    margin-bottom: 2px;
+}
+
+#pop-up-body input {
+    outline: none;
+    border: 1px solid rgb(137, 140, 158);
+    border-radius: 3px;
+}
+
+.close-btn:hover + .empty-project-popup {
+    display: none;
 }
 
 /* Close pop up and Edit pop Up BUTTON */

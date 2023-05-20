@@ -106,29 +106,54 @@ export function submitButton() {
     form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        // User Submitted Values
-        userSelectedTitle = document.querySelector("#title").value;
-        userSelectedDetails = document.querySelector("#details").value;
-        userSelectedPriority = findUserPriority();
-        userSelectedDate = document.querySelector("#date").value;
+        const dueDate = form.querySelector("#date").value;
+        const dueDateStyle = form.querySelector("#date");
+        const title = form.querySelector("#title").value;
+        const titleStyle = form.querySelector("#title");
+        if (!title) {
+            // const popUp = document.querySelector(".pop-up.empty-title");
+            // popUp.style.display = "block"
+            titleStyle.style.borderColor = "red";
+            titleStyle.addEventListener("input", () => {
+                titleStyle.style.borderColor = "black";
+                if (titleStyle.value == "") {
+                    titleStyle.style.borderColor = "red";
+                }
+            });
+        }
+        if (!dueDate) {
+            dueDateStyle.style.borderColor = "red";
+            dueDateStyle.addEventListener("input", () => {
+                dueDateStyle.style.borderColor = "black";
+                if (dueDateStyle.value == "") {
+                    dueDateStyle.style.borderColor = "red";
+                }
+            });
+        } else {
+            // User Submitted Values
+            userSelectedTitle = document.querySelector("#title").value;
+            userSelectedDetails = document.querySelector("#details").value;
+            userSelectedPriority = findUserPriority();
+            userSelectedDate = document.querySelector("#date").value;
 
-        AddToStorage(
-            userSelectedTitle,
-            userSelectedDetails,
-            userSelectedPriority,
-            userSelectedDate,
-            SidebarProjects()
-        );
+            AddToStorage(
+                userSelectedTitle,
+                userSelectedDetails,
+                userSelectedPriority,
+                userSelectedDate,
+                SidebarProjects()
+            );
 
-        // Close Pop UP
-        const popUp = document.querySelector(".pop-up");
-        popUp.style.display = "none";
+            // Close Pop UP
+            const popUp = document.querySelector(".pop-up");
+            popUp.style.display = "none";
 
-        // Call Clear Form Values
-        ClearFormValues();
+            // Call Clear Form Values
+            ClearFormValues();
 
-        // Add Check Box Listener to New ToDo's
-        CheckBoxListener();
+            // Add Check Box Listener to New ToDo's
+            CheckBoxListener();
+        }
     });
 }
 

@@ -80,7 +80,8 @@ export function createProject() {
         event.preventDefault();
 
         if (createNewProjectInput.value == "") {
-            return;
+            const popUp = document.querySelector(".pop-up.empty-project-popup");
+            popUp.style.display = "block";
         } else {
             const newProjectValue = createNewProjectInput.value;
 
@@ -115,6 +116,15 @@ export function createProject() {
             }, 100);
             firstRun = false;
         }
+    });
+
+    // Close POP UP Button
+    const modalBtn = document.querySelector(
+        ".pop-up.empty-project-popup button"
+    );
+    modalBtn.addEventListener("click", () => {
+        const modal = document.querySelector(".pop-up.empty-project-popup ");
+        modal.style.display = "none";
     });
 }
 
