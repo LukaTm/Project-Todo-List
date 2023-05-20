@@ -71,33 +71,50 @@ AddUnderlineForProject();
 
 export function createProject() {
     const createNewProjectInput = document.querySelector("#createProject");
+
     const allProjects = document.querySelector("#projects ul");
 
     const createProjectSubmit = document.querySelector("#submitNewProject");
+
     createProjectSubmit.addEventListener("click", (event) => {
         event.preventDefault();
 
-        const newProjectValue = createNewProjectInput.value;
-        const li = document.createElement("li");
-        const div = document.createElement("div");
-        li.classList.add(`project${projectId}`, "wrap-text");
+        if (createNewProjectInput.value == "") {
+            return;
+        } else {
+            const newProjectValue = createNewProjectInput.value;
 
-        const textNode = document.createTextNode(newProjectValue);
+            const li = document.createElement("li");
+            const div = document.createElement("div");
+            li.classList.add(`project${projectId}`, "wrap-text");
 
-        li.appendChild(textNode);
+            const textNode = document.createTextNode(newProjectValue);
 
-        div.appendChild(li);
-        div.className = `prox${projectId}`;
-        allProjects.appendChild(div);
-        createNewProjectInput.value = "";
+            li.appendChild(textNode);
 
-        deleteBtnProject();
-        SidebarProjects();
-        Test();
+            div.appendChild(li);
+            div.className = `prox${projectId}`;
+            allProjects.appendChild(div);
+            createNewProjectInput.value = "";
 
-        AddUnderlineForProject();
+            deleteBtnProject();
+            SidebarProjects();
+            Test();
 
-        projectId += 1;
+            AddUnderlineForProject();
+
+            projectId += 1;
+            // Select Latest Project after CREATING IT
+            let firstRun = true;
+
+            setTimeout(() => {
+                const lastLi = document.querySelector(
+                    "#projects ul:last-child div:last-child li"
+                );
+                lastLi.click();
+            }, 100);
+            firstRun = false;
+        }
     });
 }
 

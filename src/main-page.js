@@ -22,21 +22,6 @@ export function mainPage() {
     container.appendChild(addButton);
     mainPage.appendChild(container);
 
-    // Select Latest Project after CREATING IT
-    let firstRun = true;
-    const createProjectSubmit = document.querySelector("#submitNewProject");
-    createProjectSubmit.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        setTimeout(() => {
-            const lastLi = document.querySelector(
-                "#projects ul:last-child div:last-child li"
-            );
-            lastLi.click();
-        }, 100);
-        firstRun = false;
-    });
-
     let runOnce = true;
     // DEFAULT PROJECT
     const defaultClick = document.querySelector(".project1.morning");
@@ -47,15 +32,6 @@ export function mainPage() {
         firstRun = false;
         runOnce = false;
     }
-
-    window.addEventListener("resize", () => {
-        const allSpanProject = document.querySelectorAll("li span");
-        allSpanProject.forEach((element) => {
-            const spanWidth = element.offsetWidth;
-            const underline = document.querySelector(".underline");
-            underline.style.width = `${spanWidth}px`;
-        });
-    });
 
     if (screenWidth <= 670) {
         mainPage.style.display = "none";
@@ -102,28 +78,11 @@ export const Drawer = () => {
             sidebar.style.display = "flex";
             drawer.className = drawer.className.replace("active", "").trim();
         }
-        if (screenWidth <= 670 && !drawer.classList.contains("active")) {
+        if (screenWidth < 670 && !drawer.classList.contains("active")) {
             sidebar.style.display = "none";
         }
     });
 };
-
-window.addEventListener("resize", () => {
-    const allSpanProject = document.querySelectorAll("li span");
-    allSpanProject.forEach((element) => {
-        const parentDiv = element.parentElement;
-        const childDiv = parentDiv.querySelector(
-            "div.underline[style*='width']"
-        );
-        const parentWidth = getComputedStyle(parentDiv).width;
-        const childWidth = getComputedStyle(childDiv).width;
-
-        if (parseInt(parentWidth) > 0 && parseInt(childWidth) > 0) {
-            const spanWidth = element.offsetWidth;
-            childDiv.style.width = `${spanWidth}px`;
-        }
-    });
-});
 
 window.addEventListener("resize", () => {
     const allSpanProject = document.querySelectorAll("li span");
