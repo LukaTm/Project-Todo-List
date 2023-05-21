@@ -35,6 +35,7 @@ export const ClearFormValues = () => {
     );
     labels.forEach((label) => {
         label.value = "";
+        label.style.borderColor = "rgb(137, 140, 158)";
     });
     // Use Checker() from form.js to clear colors
     Checker();
@@ -272,11 +273,6 @@ function showEditedOnPage(
 }
 
 function addEditButton(addId, div) {
-    // const deleteButton = document.createElement("i");
-    // deleteButton.className = `fas fa-trash-alt delProject${count}`;
-    // deleteButton.style.color = "white";
-    // deleteButton.style.borderColor = "#cccccc";
-
     // Add Edit Button
     const editButton = document.createElement("i");
     editButton.className = `fas fa-edit all-pop-ups`;

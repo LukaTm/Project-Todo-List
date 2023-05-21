@@ -8,10 +8,6 @@ export function mainPage() {
         mainPage.style.opacity = "0";
     }
 
-    // const h1 = document.createElement("h1");
-    // h1.textContent = "TO-DO";
-    // header.appendChild(h1);
-
     // Add Button
     const addButton = document.createElement("div");
     addButton.id = "addButton";
@@ -74,11 +70,11 @@ export const Drawer = () => {
     });
     window.addEventListener("resize", () => {
         const screenWidth = window.innerWidth;
-        if (screenWidth >= 670) {
+        if (screenWidth > 670) {
             sidebar.style.display = "flex";
             drawer.className = drawer.className.replace("active", "").trim();
         }
-        if (screenWidth < 670 && !drawer.classList.contains("active")) {
+        if (screenWidth <= 670 && !drawer.classList.contains("active")) {
             sidebar.style.display = "none";
         }
     });
