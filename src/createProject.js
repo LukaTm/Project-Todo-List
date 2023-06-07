@@ -56,14 +56,6 @@ const AddUnderlineForProject = () => {
                 underline.style.opacity = 0;
             }
         });
-        window.addEventListener("resize", () => {
-            const allSpanProject = document.querySelectorAll("li span");
-            allSpanProject.forEach((element) => {
-                const spanWidth = element.offsetWidth;
-                const underline = document.querySelector(".underline");
-                underline.style.width = `${spanWidth}px`;
-            });
-        });
     });
 };
 

@@ -1,3 +1,5 @@
+let clickProjectOnce = true
+
 export function mainPage() {
     // const header = document.querySelector("header");
     const mainPage = document.querySelector("#sidebar");
@@ -82,6 +84,8 @@ export const Drawer = () => {
 
 window.addEventListener("resize", () => {
     const allSpanProject = document.querySelectorAll("li span");
+    // const morningProject = document.querySelector('.project1.morning')
+    // if (morningProject.childDiv.style)
     allSpanProject.forEach((element) => {
         const parentDiv = element.parentElement;
         const childDiv = parentDiv.querySelector(
