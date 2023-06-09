@@ -11,7 +11,7 @@ export const editPopUpUserPriority = () => {
     const buttonIds = ["low", "medium", "high"];
     const buttons = buttonIds.map((id) => document.querySelector(`#${id}`));
     for (let i = 0; i < buttons.length; i++) {
-        if (buttons[i].style.backgroundColor !== "rgb(154, 194, 209)") {
+        if (buttons[i].style.backgroundColor !== "rgb(55, 61, 81)") {
             return buttons[i].id;
         }
     }
@@ -22,7 +22,7 @@ const findUserPriority = () => {
     const buttonIds = ["low", "medium", "high"];
     const buttons = buttonIds.map((id) => document.querySelector(`.${id}`));
     for (let i = 0; i < buttons.length; i++) {
-        if (buttons[i].style.backgroundColor !== "rgb(154, 194, 209)") {
+        if (buttons[i].style.backgroundColor !== "rgb(55, 61, 81)") {
             return buttons[i].className;
         }
     }

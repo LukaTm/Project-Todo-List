@@ -4,7 +4,7 @@ export const SidebarProjects = () => {
     projects.forEach((element) => {
         element.addEventListener("click", () => {
             projects.forEach((thing) => {
-                thing.style.backgroundColor = "#dab785";
+                thing.style.backgroundColor = "#9BA4B5";
             });
             // element.style.backgroundColor = "red";
 

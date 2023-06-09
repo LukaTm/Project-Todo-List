@@ -1,3 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: my-custom-font-bebas;
+    src: url(../fonts/BebasNeue-Regular.ttf);
+}
+@font-face {
+    font-family: my-custom-font-workSans1;
+    src: url(../fonts/WorkSans-Italic-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: my-custom-font-workSans2;
+    src: url(../fonts/WorkSans-VariableFont_wght.ttf);
+}
+
 body {
     display: grid;
     margin: 0;
@@ -10,15 +27,17 @@ body {
 h1 {
     margin: 0;
     margin-left: 30px;
-    width: 100px;
+    font-size: 2em;
+    font-family: my-custom-font-bebas, "Franklin Gothic Medium", "Arial Narrow",
+        Arial, sans-serif;
 }
 
 header {
     display: flex;
-    background-color: #805762;
+    background-color: #394867;
     font-family: monospace;
     align-items: center;
-    color: #fff;
+    color: #ece5c7;
     font-size: 1.2em;
     grid-area: 1 / 1 / 2 / 4;
     position: relative;
@@ -33,7 +52,7 @@ header {
 
 .drawer {
     width: 30px;
-    height: 22px;
+    height: 25px;
     cursor: pointer;
     margin-right: 20px;
 }
@@ -49,7 +68,7 @@ header {
 #sidebar {
     display: flex;
     grid-area: 2 / 1 / 3 / 2;
-    background-color: #dab785;
+    background-color: #9ba4b5;
     /* grid-template-columns: auto; */
     /* grid-template-rows: minmax(100px, 0.5fr) 100px; */
     /* grid-template-rows: 0.5fr minmax(500px) minmax(100px, 0.1fr); */
@@ -67,10 +86,14 @@ header {
 
 #createNewProject {
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
     justify-content: center;
-    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100%);
+}
+
+#createNewProject * {
+    z-index: 10;
 }
 
 #createNewProject > *:first-child {
@@ -81,37 +104,13 @@ header {
     font-size: 1.4em;
 }
 
-#createProject {
-    display: flex;
-    justify-self: center;
-    border: 1px solid rgb(145, 137, 137);
-    border-radius: 2px;
-    margin-bottom: 5px;
-}
-
-#createProject:focus {
-    outline: none;
-}
-
 #submitNewProject {
-    width: 100px;
-    border-radius: 5px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    background-color: #ffffff;
-    padding-left: 7px;
-    padding-right: 7px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    border: 1px solid rgb(167, 164, 164);
-    box-shadow: 2px 2px 5px -2px;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    font-weight: 600;
+    background-color: #3a4a6b;
 }
-
 #submitNewProject:hover {
-    background-color: rgb(233, 221, 221);
+    background-color: #485a81;
 }
 
 #projects {
@@ -126,8 +125,28 @@ header {
     font-size: 1.3em;
     margin-left: 20px;
     margin-bottom: 10px;
-    min-width: 200px;
-    max-width: 200px;
+    min-width: 180px;
+    font-family: my-custom-font-workSans2;
+    font-weight: 500;
+}
+
+#main-list {
+    display: flex;
+    flex-direction: column;
+    /* background-color: #463535; */
+    background-color: #e0e5ec;
+    padding: 15px 0px 0px 15px;
+    grid-area: 2 / 2 /2 /3;
+}
+
+#main-list p {
+    color: rgb(14, 14, 14);
+    font-size: 1em;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+}
+#main-list p:not(:first-child) {
+    padding-left: 25px;
 }
 
 [id^="todo"] {
@@ -135,6 +154,14 @@ header {
     align-items: baseline;
     margin-left: 30px;
     position: relative;
+    background-color: #cdd4dd;
+    border-left: 32px solid #cdd4dd;
+    max-width: fit-content;
+    padding: 2px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    width: 90%;
 }
 
 div[id^="todo"] p:nth-of-type(2) {
@@ -150,13 +177,13 @@ input[type="checkbox"] {
 input[type="checkbox"] + label::before {
     content: "";
     display: inline-block;
-    width: 14px;
-    height: 14px;
-    border: 2px solid #ccc;
+    width: 17px;
+    height: 18px;
+    border: 2px solid #4a5872;
     border-radius: 3px;
     position: absolute;
-    left: -30px;
-    top: 15px;
+    left: -27px;
+    top: 11px;
     cursor: pointer;
 }
 
@@ -167,7 +194,7 @@ input[type="checkbox"]:checked + label::before {
 
 input[type="checkbox"]:checked + label::before {
     content: "✓";
-    color: #fff;
+    color: #ffffff;
     text-align: center;
     line-height: 14px;
     font-size: 12px;
@@ -181,24 +208,6 @@ input[type="checkbox"]:checked + label::before {
     left: 130px;
 }
 
-#main-list {
-    display: flex;
-    flex-direction: column;
-    background-color: #522f2f;
-
-    padding: 15px 0px 0px 15px;
-    grid-area: 2 / 2 /2 /3;
-}
-
-#main-list p {
-    color: white;
-    font-size: 0.9em;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-}
-#main-list p:not(:first-child) {
-    padding-left: 25px;
-}
-
 ul {
     position: relative;
 }
@@ -210,6 +219,7 @@ ul > div {
 ul > div > i {
     margin-left: 10px;
     margin-right: 5px;
+    z-index: 10;
 }
 
 .fa-trash-alt {
@@ -225,7 +235,7 @@ ul > div > i {
 /* Add TO DO Button */
 #addButton {
     position: relative;
-    background-color: #699abb;
+    background-color: #3a4a6b;
     height: 50px;
     width: 50px;
     display: flex;
@@ -239,7 +249,11 @@ ul > div > i {
     z-index: 2;
 }
 
-.container {
+#addButton:hover {
+    background-color: #485a81;
+}
+
+.container-add-button {
     display: flex;
     align-items: end;
     justify-content: end;
@@ -260,6 +274,7 @@ ul > div > i {
     width: calc(var(--mark-size) * 0.12);
     height: var(--mark-size);
     background-color: rgb(253, 253, 253);
+    border-radius: 2px;
 }
 
 #addButton::before {
@@ -273,14 +288,18 @@ ul > div > i {
 /* Edit pop up */
 #edit-pop-up {
     display: none;
-    width: 500px;
-    height: 300px;
-    background-color: rgb(154, 194, 209);
+    width: 600px;
+    height: 50%;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 5px;
+    z-index: 10;
+}
+
+#submitEdit {
+    cursor: pointer;
 }
 
 /* POP up Screen */
@@ -290,7 +309,6 @@ ul > div > i {
     width: 60%;
     max-width: 600px;
     height: 50%;
-    background-color: rgb(154, 194, 209);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -303,31 +321,6 @@ ul > div > i {
     height: calc(100vh - 60vh);
 }
 
-/* Pop up Body */
-#pop-up-body {
-    padding: 20px;
-}
-
-#pop-up-body #priority {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    font-size: 0.9em;
-    margin-bottom: 2px;
-}
-
-#pop-up-body label {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    font-size: 0.9em;
-    margin-bottom: 2px;
-}
-
-#pop-up-body input {
-    outline: none;
-    border: 1px solid rgb(137, 140, 158);
-    border-radius: 3px;
-}
-
 .close-btn:hover + .empty-project-popup {
     display: none;
 }
@@ -338,17 +331,6 @@ ul > div > i {
     background-color: inherit;
     border: none;
     font-size: 2em;
-}
-
-/* Pop Up and Edit Pop up HEADER */
-.header {
-    position: relative;
-    display: grid;
-    height: 40px;
-    background-color: rgb(174, 169, 199);
-    justify-content: end;
-    padding: 2px;
-    border-radius: 5px 5px 0px 0px;
 }
 
 /* Priority */
@@ -366,23 +348,13 @@ ul > div > i {
     font-weight: 600;
     margin: 5px;
     padding: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
 
     cursor: pointer;
 }
 
-.todo-form {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-}
-
 #submit {
-    height: 25px;
-    width: 65px;
-    border: 1px solid black;
-    border-radius: 5px;
-
     cursor: pointer;
 }
 
@@ -396,21 +368,22 @@ ul > div > i {
 
 /* Form On click styles */
 .low:hover {
-    background-color: green;
+    background-color: green !important;
 }
 
 .medium:hover {
-    background-color: rgb(212, 212, 76);
+    background-color: rgb(212, 212, 76) !important;
 }
 
 .high:hover {
-    background-color: red;
+    background-color: red !important;
 }
 
 #projects li {
     position: relative;
     cursor: pointer;
     margin-top: 10px;
+    z-index: 10;
 }
 
 .underline {
@@ -436,12 +409,12 @@ ul > div > i {
     margin-left: 20px;
     margin-right: 12px;
     font-size: 1.1em;
-    color: white;
+    color: #000000;
     align-self: center;
 }
 
 #main-list .fas.fa-trash-alt {
-    color: white;
+    color: #000000;
     align-self: center;
     margin-right: 10px;
     font-size: 1.1em;
@@ -454,25 +427,13 @@ ul > div > i {
 @media (max-width: 1000px) {
     #projects li,
     #projects p {
-        min-width: 200px;
-        max-width: 200px;
+        min-width: 160px;
     }
 }
 @media (max-width: 800px) {
     #projects li,
     #projects p {
         min-width: 160px;
-        max-width: 1600px;
-    }
-}
-
-@media (max-width: 716px) {
-    #sidebar > * {
-        font-size: 1.8vw;
-    }
-    #projects li,
-    #projects p {
-        min-width: calc(100vw - 570px);
     }
 }
 
@@ -552,12 +513,6 @@ ul > div > i {
         min-width: calc(100vw + 45px);
     }
 }
-
-/* @media (max-width: 360px) {
-    #main-list {
-        height: 100%;
-    }
-} */
 
 @media (max-width: 309px) {
     body {

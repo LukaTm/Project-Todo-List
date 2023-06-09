@@ -9,11 +9,11 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         />
-        <link rel="stylesheet" href="../src/style.css" />
+        <link rel="stylesheet" href="../src/output.css" />
     </head>
     <body>
         <header>
-            <div>
+            <div class="w-full">
                 <h1>TO-DO</h1>
             </div>
             <div class="drawer-container">
@@ -26,7 +26,7 @@
         </header>
 
         <div id="sidebar">
-            <div id="projects">
+            <div id="projects" class="mt-5 ml-2">
                 <p class="show-all-todos">All ToDo's</p>
                 <p>Projects</p>
                 <div id="del-project"></div>
@@ -42,37 +42,103 @@
                     </div>
                 </ul>
             </div>
-            <div id="createNewProject">
-                <label for="createProject">Create New Project: </label>
-                <input
-                    type="text"
-                    id="createProject"
-                    name="createProject"
-                /><br />
-                <input id="submitNewProject" type="button" value="Submit" />
+            <div class="w-full flex justify-center">
+                <form>
+                    <div id="createNewProject" class="">
+                        <label for="createProject">Create New Project: </label>
+                        <input
+                            type="text"
+                            id="createProject"
+                            name="createProject"
+                            class="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Project name"
+                        /><br />
+                        <input
+                            class="text-white font-bold py-1.5 px-5 rounded"
+                            id="submitNewProject"
+                            type="button"
+                            value="Submit"
+                        />
+                    </div>
+                </form>
             </div>
         </div>
 
         <div id="main-list"></div>
-        <div class="pop-up">
-            <div class="header">
-                <button class="close-btn">&times</button>
+
+        <div
+            class="pop-up relative bg-white rounded-lg shadow dark:bg-gray-700"
+        >
+
+            <div
+                class="flex items-start justify-between h-12 p-2 border-b rounded-t dark:border-gray-600"
+            >
+                <button
+                    type="button"
+                    class="close-btn text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="staticModal"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                        ></path>
+                    </svg>
+                </button>
             </div>
-            <div id="pop-up-body">
-                <form class="todo-form">
-                    <label for="title">Title: </label>
-                    <input type="text" id="title" name="title" /><br />
-                    <label for="details">Details:</label>
-                    <input type="text" id="details" name="details" /><br />
-                    <label for="date">Due Date:</label>
-                    <input type="date" id="date" name="date" />
-                    <div class="priority">
-                        <div id="priority">Priority:</div>
-                        <div class="low">LOW</div>
-                        <div class="medium">MEDIUM</div>
-                        <div class="high">HIGH</div>
+            <div
+                id="pop-up-body"
+                class="flex flex-col items-center justify-center"
+            >
+                <form class="todo-form w-80">
+                    <label for="title" class="text-white">Title:</label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+                        type="text"
+                        id="title"
+                        name="title"
+                    /><br />
+                    <label for="details" class="text-white">Details:</label>
+                    <input
+                        type="text"
+                        id="details"
+                        name="details"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+                    /><br />
+                    <label for="date" class="text-white">Due Date:</label>
+                    <input
+                        type="date"
+                        id="date"
+                        name="date"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                    <div class="priority flex items-center mt-3">
+                        <div id="priority" class="text-white font-bold mr-1">
+                            Priority:
+                        </div>
+                        <div class="low text-sm text-gray-700 ml-2 py-5">
+                            <span class="py-5">LOW</span>
+                        </div>
+                        <div class="medium text-sm text-gray-700 ml-2">
+                            MEDIUM
+                        </div>
+                        <div class="high text-sm text-gray-700 ml-2">HIGH</div>
                     </div>
-                    <input id="submit" type="submit" value="Submit" />
+                    <div class="flex justify-center mt-3">
+                        <input
+                            data-modal-hide="staticModal"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            id="submit"
+                            type="submit"
+                            value="Submit"
+                        />
+                    </div>
                 </form>
             </div>
         </div>
@@ -80,25 +146,88 @@
             <button class="close-btn">&times</button>
             <div>Can't have empty project name</div>
         </div>
-        <div id="edit-pop-up">
-            <div class="header">
-                <button class="close-btn">&times</button>
+        <div
+            id="edit-pop-up"  class="relative bg-white rounded-lg shadow dark:bg-gray-700""
+        >
+
+            <div
+                class="flex items-start justify-between h-12 p-2 border-b rounded-t dark:border-gray-600"
+            >
+                <button
+                    type="button"
+                    class="close-btn text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="staticModal"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                        ></path>
+                    </svg>
+                </button>
             </div>
-            <div id="pop-up-edit-body">
-                <form class="edit-to-do">
-                    <label for="title">Title: </label>
-                    <input type="text" id="title2" name="title" /><br />
-                    <label for="details">Details:</label>
-                    <input type="text" id="details2" name="details" /><br />
-                    <label for="date">Due Date:</label>
-                    <input type="date" id="date2" name="date" />
-                    <div class="priority">
-                        <div id="priority">Priority:</div>
-                        <div id="low" class="low">LOW</div>
-                        <div id="medium" class="medium">MEDIUM</div>
-                        <div id="high" class="high">HIGH</div>
+            <div
+                id="pop-up-edit-body"
+                class="flex flex-col items-center justify-center"
+            >
+                <form class="edit-to-do w-80">
+                    <label for="title" class="text-white">Title: </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+                        type="text"
+                        id="title2"
+                        name="title"
+                        placeholder="Title name"
+                    /><br />
+                    <label for="details" class="text-white">Details:</label>
+                    <input
+                        type="text"
+                        id="details2"
+                        name="details"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+                    /><br />
+                    <label for="date" class="text-white">Due Date:</label>
+                    <input
+                        type="date"
+                        id="date2"
+                        name="date"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                    <div class="priority flex items-center mt-3">
+                        <div id="priority" class="text-white font-bold mr-1">
+                            Priority:
+                        </div>
+                        <div
+                            id="low"
+                            class="low text-sm text-gray-700 ml-2 py-5"
+                        >
+                            LOW
+                        </div>
+                        <div
+                            id="medium"
+                            class="medium text-sm text-gray-700 ml-2"
+                        >
+                            MEDIUM
+                        </div>
+                        <div id="high" class="high text-sm text-gray-700 ml-2">
+                            HIGH
+                        </div>
                     </div>
-                    <input id="submitEdit" type="submit" value="Submit" />
+                    <div class="flex justify-center mt-3">
+                        <input
+                            data-modal-hide="staticModal"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            id="submitEdit"
+                            type="submit"
+                            value="Submit"
+                        />
+                    </div>
                 </form>
             </div>
         </div>

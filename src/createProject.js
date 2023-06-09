@@ -146,6 +146,9 @@ export function deleteBtnProject() {
                 const allSelectedDeleteClasses = document.querySelectorAll(
                     `.${deleteButtonSecondWord.toString()}`
                 );
+                const selectedElement = document.querySelector(
+                    `.${deleteButtonSecondWord.toString()} li div`
+                );
                 allSelectedDeleteClasses.forEach((eachClass) => {
                     eachClass.remove();
 
@@ -160,7 +163,9 @@ export function deleteBtnProject() {
                     UpdateUserData(userStorage);
 
                     // Automatically select the top project after DELETING project
-                    document.querySelector("#projects li").click();
+                    if (selectedElement.style.opacity == "1") {
+                        document.querySelector("#projects li").click();
+                    }
                 });
             });
         }

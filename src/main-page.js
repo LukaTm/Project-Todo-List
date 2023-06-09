@@ -1,4 +1,4 @@
-let clickProjectOnce = true
+let clickProjectOnce = true;
 
 export function mainPage() {
     // const header = document.querySelector("header");
@@ -16,7 +16,7 @@ export function mainPage() {
     addButton.className = "all-pop-ups";
 
     const container = document.createElement("div");
-    container.className = "container";
+    container.className = "container-add-button";
     container.appendChild(addButton);
     mainPage.appendChild(container);
 
