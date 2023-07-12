@@ -2,58 +2,41 @@ import { SidebarProjects } from "./projects.js";
 import { RemoveProjectFromStorage } from "./submit.js";
 import { UpdateUserData } from "./submit.js";
 
-const Test = () => {
-    const projects = document.querySelectorAll("#projects li");
-    projects.forEach((element) => {
-        let whichProjectToUploadToDO = element.childNodes[0].textContent;
-        element.classList.add(whichProjectToUploadToDO);
-    });
-};
-
-let selectedProject = null;
 let projectId = 4;
 
 const AddUnderlineForProject = () => {
     const lis = document.querySelectorAll("#projects li");
 
+    let selectedProject = null;
+
     lis.forEach((li) => {
-        const text = li.innerText;
         const span = document.createElement("span");
-        span.innerText = text;
+        span.innerText = li.innerText;
         li.innerHTML = "";
         li.appendChild(span);
 
-        const underline = document.createElement("div");
-        underline.classList.add("underline");
-        li.appendChild(underline);
-
-        li.addEventListener("mouseenter", () => {
-            // SPAN WIDTH
+        span.addEventListener("click", () => {
             if (selectedProject !== li) {
-                const spanWidth = span.offsetWidth;
-                underline.style.width = `${spanWidth}px`;
-                underline.style.opacity = 1;
-            }
-        });
-
-        li.addEventListener("click", () => {
-            if (selectedProject !== li) {
-                const spanWidth = span.offsetWidth;
-                underline.style.width = `${spanWidth}px`;
-                underline.style.opacity = 1;
                 if (selectedProject) {
-                    selectedProject.querySelector(".underline").style.width =
-                        "0";
-                    selectedProject.querySelector("div").style.opacity = "0";
+                    selectedProject
+                        .querySelector("span")
+                        .classList.remove("active");
                 }
-                selectedProject = li;
-            }
-        });
 
-        li.addEventListener("mouseleave", () => {
-            if (selectedProject !== li) {
-                underline.style.width = "0";
-                underline.style.opacity = 0;
+                span.classList.add("active");
+                span.parentNode.parentNode.classList.add("active");
+
+                selectedProject = li;
+                // remove project active class
+                const projectDiv = document.querySelectorAll("#projects div");
+                projectDiv.forEach((div) => {
+                    const childLi = div.querySelector("li");
+                    if (childLi != selectedProject) {
+                        div.classList.remove("active");
+                    } else {
+                        div.classList.add("active");
+                    }
+                });
             }
         });
     });
@@ -92,7 +75,6 @@ export function createProject() {
 
             deleteBtnProject();
             SidebarProjects();
-            Test();
 
             AddUnderlineForProject();
 
@@ -102,7 +84,7 @@ export function createProject() {
 
             setTimeout(() => {
                 const lastLi = document.querySelector(
-                    "#projects ul:last-child div:last-child li"
+                    "#projects ul div:last-child li span"
                 );
                 lastLi.click();
             }, 100);
@@ -119,7 +101,6 @@ export function createProject() {
         modal.style.display = "none";
     });
 }
-
 export function deleteBtnProject() {
     const allProjectDeleteButtons =
         document.querySelectorAll('[class*="prox"]');
@@ -142,17 +123,17 @@ export function deleteBtnProject() {
                 event.stopPropagation();
 
                 const deleteButtonSecondWord =
-                    deleteButton.parentElement.className;
+                    deleteButton.parentElement.className.split(" ")[0];
                 const allSelectedDeleteClasses = document.querySelectorAll(
                     `.${deleteButtonSecondWord.toString()}`
                 );
                 const selectedElement = document.querySelector(
-                    `.${deleteButtonSecondWord.toString()} li div`
+                    `.${deleteButtonSecondWord.toString()}`
                 );
                 allSelectedDeleteClasses.forEach((eachClass) => {
                     eachClass.remove();
 
-                    // New Array with Removed Project and Todo's
+                    // Remove project from userToDoStorage
                     const userStorage = RemoveProjectFromStorage();
                     const index = userStorage.findIndex(
                         (obj) => obj.project == deleteButtonSecondWord
@@ -162,9 +143,23 @@ export function deleteBtnProject() {
                     }
                     UpdateUserData(userStorage);
 
+                    // Remove project from projectTodoMapping
+                    const projectTodoMapping =
+                        JSON.parse(
+                            localStorage.getItem("projectTodoMapping")
+                        ) || {};
+                    delete projectTodoMapping[deleteButtonSecondWord];
+                    localStorage.setItem(
+                        "projectTodoMapping",
+                        JSON.stringify(projectTodoMapping)
+                    );
+
                     // Automatically select the top project after DELETING project
-                    if (selectedElement.style.opacity == "1") {
-                        document.querySelector("#projects li").click();
+                    if (selectedElement.classList.contains("active")) {
+                        const project = document.querySelector(
+                            "#projects li:not(.exclude) span"
+                        );
+                        project.click();
                     }
                 });
             });

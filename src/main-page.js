@@ -22,14 +22,17 @@ export function mainPage() {
 
     let runOnce = true;
     // DEFAULT PROJECT
-    const defaultClick = document.querySelector(".project1.morning");
-    if (defaultClick && runOnce) {
-        defaultClick.click();
-        runOnce = false;
-    } else {
-        firstRun = false;
-        runOnce = false;
-    }
+    setTimeout(() => {
+        const defaultClick = document.querySelector(
+            "#projects ul div:first-child li span"
+        );
+        if (defaultClick && runOnce) {
+            defaultClick.click();
+            runOnce = false;
+        } else {
+            runOnce = false;
+        }
+    }, 100);
 
     if (screenWidth <= 670) {
         mainPage.style.display = "none";
@@ -81,25 +84,3 @@ export const Drawer = () => {
         }
     });
 };
-
-window.addEventListener("resize", () => {
-    const allSpanProject = document.querySelectorAll("li span");
-    // const morningProject = document.querySelector('.project1.morning')
-    // if (morningProject.childDiv.style)
-    allSpanProject.forEach((element) => {
-        const parentDiv = element.parentElement;
-        const childDiv = parentDiv.querySelector(
-            "div.underline[style*='width']"
-        );
-
-        if (parentDiv && childDiv) {
-            const parentWidth = getComputedStyle(parentDiv).width;
-            const childWidth = getComputedStyle(childDiv).width;
-
-            if (parseInt(parentWidth) > 0 && parseInt(childWidth) > 0) {
-                const spanWidth = element.offsetWidth;
-                childDiv.style.width = `${spanWidth}px`;
-            }
-        }
-    });
-});
