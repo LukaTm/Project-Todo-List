@@ -56,7 +56,7 @@ export function createProject() {
 
         if (createNewProjectInput.value == "") {
             const popUp = document.querySelector(".pop-up.empty-project-popup");
-            popUp.style.display = "block";
+            popUp.style.display = "flex";
         } else {
             const newProjectValue = createNewProjectInput.value;
 

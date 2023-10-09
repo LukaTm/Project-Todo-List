@@ -10,8 +10,10 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         />
         <link rel="stylesheet" href="./output.css" />
+        <script src="main.js" defer></script>
     </head>
     <body>
+        <div id="main">
         <header>
             <div class="w-full">
                 <h1>TO-DO</h1>
@@ -69,7 +71,7 @@
         <div id="main-list"></div>
 
         <div
-            class="pop-up relative bg-white rounded-lg shadow dark:bg-gray-700"
+            class="pop-up  bg-white rounded-lg shadow dark:bg-gray-700"
         >
 
             <div
@@ -96,9 +98,9 @@
             </div>
             <div
                 id="pop-up-body"
-                class="flex flex-col items-center justify-center"
+                class="flex flex-col items-center justify-center mb-3 "
             >
-                <form class="todo-form w-80">
+                <form class="todo-form ">
                     <label for="title" class="text-white">Title:</label>
                     <input
                         class="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
@@ -122,7 +124,7 @@
                         name="date"
                         class="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
-                    <div class="priority flex items-center mt-3">
+                    <div class="priority flex  items-center mt-3">
                         <div id="priority" class="text-white mr-1">
                             Priority:
                         </div>
@@ -137,7 +139,7 @@
                     <div class="flex justify-center mt-3">
                         <input
                             data-modal-hide="staticModal"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
                             id="submit"
                             type="submit"
                             value="Submit"
@@ -155,7 +157,7 @@
         >
 
             <div
-                class="flex items-start justify-between h-12 p-2 border-b rounded-t dark:border-gray-600"
+                class="flex items-start justify-between h-12 p-2 border-b rounded-t dark:border-gray-600 "
             >
                 <button
                     type="button"
@@ -180,7 +182,7 @@
                 id="pop-up-edit-body"
                 class="flex flex-col items-center justify-center"
             >
-                <form class="edit-to-do w-80">
+                <form class="edit-to-do w-2/3">
                     <label for="title" class="text-white">Title: </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
@@ -235,6 +237,6 @@
                 </form>
             </div>
         </div>
-        <script src="main.js"></script>
+    </div>
     </body>
 </html>

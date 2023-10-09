@@ -23,7 +23,7 @@ const findUserPriority = () => {
     const buttons = buttonIds.map((id) => document.querySelector(`.${id}`));
     for (let i = 0; i < buttons.length; i++) {
         if (buttons[i].style.backgroundColor !== "rgb(55, 61, 81)") {
-            return buttons[i].className;
+            return buttons[i].className.split(" ")[0];
         }
     }
 };
